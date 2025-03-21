@@ -7,7 +7,7 @@
 
 .generator h2 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin: 0;
   color: #333;
 }
 
@@ -20,7 +20,6 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
-  margin: 0;
   width: 100%;
   max-width: 600px;
 }
@@ -61,7 +60,7 @@ select:focus {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 1rem 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
   font-weight: 500;
