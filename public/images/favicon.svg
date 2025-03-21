@@ -1,10 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" fill="#ffeb3b" rx="128" ry="128"/>
-  <g transform="translate(256, 256)">
-    <!-- Background circle -->
-    <circle r="160" fill="#fff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
-    <!-- Emoji -->
-    <text x="0" y="0" font-size="160" text-anchor="middle" alignment-baseline="central">🤔</text>
-  </g>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="8" fill="#FFEB3B"/>
+  <circle cx="16" cy="16" r="10" fill="white" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"/>
+  <text x="16" y="19" text-anchor="middle" font-size="12">🤔</text>
 </svg>
