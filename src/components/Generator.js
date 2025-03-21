@@ -6,7 +6,6 @@ const Generator = ({ title, data, categories }) => {
   const [selectedBudget, setSelectedBudget] = useState('any');
   const [selectedSeriousness, setSelectedSeriousness] = useState('any');
   const [currentItem, setCurrentItem] = useState(null);
-  const [copySuccess, setCopySuccess] = useState(false);
 
   const isDateIdeas = title.toLowerCase().includes('date');
   
@@ -68,10 +67,6 @@ const Generator = ({ title, data, categories }) => {
     
     const fullText = `${currentItem.text} ${currentItem.emoji}`;
     navigator.clipboard.writeText(fullText)
-      .then(() => {
-        setCopySuccess(true);
-        setTimeout(() => setCopySuccess(false), 2000);
-      })
       .catch(err => console.error('Failed to copy text: ', err));
   }, [currentItem]);
 
