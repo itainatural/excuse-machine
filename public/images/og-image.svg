@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#ffeb3b"/>
+  <g transform="translate(600, 315)">
+    <!-- Background circle -->
+    <circle r="250" fill="#fff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+    <!-- Emoji -->
+    <text x="0" y="0" font-size="200" text-anchor="middle" alignment-baseline="central">🤔</text>
+    <!-- Title -->
+    <text x="0" y="-320" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#333">
+      Excuse Machine
+    </text>
+    <!-- Subtitle -->
+    <text x="0" y="-250" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="#666">
+      Creative Excuses & Date Ideas Generator
+    </text>
+  </g>
+</svg>
