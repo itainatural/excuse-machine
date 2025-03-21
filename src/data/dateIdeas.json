@@ -6,8 +6,98 @@
       "budget": "free"
     },
     {
+      "text": "Take a walk in a scenic park",
+      "emoji": "🌳",
+      "budget": "free"
+    },
+    {
+      "text": "Visit a local farmers market",
+      "emoji": "🥑",
+      "budget": "free"
+    },
+    {
+      "text": "Go to a free museum day",
+      "emoji": "🏛",
+      "budget": "free"
+    },
+    {
+      "text": "Attend a local music event in the park",
+      "emoji": "🎵",
+      "budget": "free"
+    },
+    {
+      "text": "Watch the sunset together",
+      "emoji": "🌇",
+      "budget": "free"
+    },
+    {
+      "text": "Visit a local library",
+      "emoji": "📚",
+      "budget": "free"
+    },
+    {
+      "text": "Go window shopping downtown",
+      "emoji": "🛍",
+      "budget": "free"
+    },
+    {
+      "text": "Take a photography walk",
+      "emoji": "📷",
+      "budget": "free"
+    },
+    {
+      "text": "Visit a local pet shelter",
+      "emoji": "🐱",
+      "budget": "free"
+    },
+    {
       "text": "Have a picnic in the park",
       "emoji": "🧺",
+      "budget": "low"
+    },
+    {
+      "text": "Get coffee at a local café",
+      "emoji": "☕",
+      "budget": "low"
+    },
+    {
+      "text": "Visit an ice cream parlor",
+      "emoji": "🍨",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a local bakery",
+      "emoji": "🍞",
+      "budget": "low"
+    },
+    {
+      "text": "Play mini golf",
+      "emoji": "⛳",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a food truck festival",
+      "emoji": "🚗",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a local brewery",
+      "emoji": "🍺",
+      "budget": "low"
+    },
+    {
+      "text": "Take a painting class",
+      "emoji": "🎨",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a botanical garden",
+      "emoji": "🌺",
+      "budget": "low"
+    },
+    {
+      "text": "Go bowling",
+      "emoji": "🎳",
       "budget": "low"
     },
     {
@@ -16,8 +106,98 @@
       "budget": "medium"
     },
     {
+      "text": "Go to an escape room",
+      "emoji": "🔑",
+      "budget": "medium"
+    },
+    {
+      "text": "Visit an aquarium",
+      "emoji": "🐟",
+      "budget": "medium"
+    },
+    {
+      "text": "Go rock climbing",
+      "emoji": "🧗",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a wine tasting class",
+      "emoji": "🍷",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a concert",
+      "emoji": "🎸",
+      "budget": "medium"
+    },
+    {
+      "text": "Visit a spa",
+      "emoji": "💆",
+      "budget": "medium"
+    },
+    {
+      "text": "Go horseback riding",
+      "emoji": "🐎",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a pottery class",
+      "emoji": "🥄",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a theater show",
+      "emoji": "🎭",
+      "budget": "medium"
+    },
+    {
       "text": "Go on a hot air balloon ride",
       "emoji": "🎈",
+      "budget": "high"
+    },
+    {
+      "text": "Take a helicopter tour",
+      "emoji": "🚁",
+      "budget": "high"
+    },
+    {
+      "text": "Go on a sunset cruise",
+      "emoji": "⛵",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury dining experience",
+      "emoji": "🍽",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private cooking lesson",
+      "emoji": "👨‍🍳",
+      "budget": "high"
+    },
+    {
+      "text": "Go skydiving",
+      "emoji": "🤸",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury spa day",
+      "emoji": "💇",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private dance lesson",
+      "emoji": "💃",
+      "budget": "high"
+    },
+    {
+      "text": "Go on a wine country tour",
+      "emoji": "🍷",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury hotel staycation",
+      "emoji": "🏨",
       "budget": "high"
     }
   ],
@@ -28,8 +208,98 @@
       "budget": "free"
     },
     {
+      "text": "Have a home movie marathon",
+      "emoji": "🎿",
+      "budget": "free"
+    },
+    {
+      "text": "Do a puzzle together",
+      "emoji": "🧩",
+      "budget": "free"
+    },
+    {
+      "text": "Cook dinner together",
+      "emoji": "🍳",
+      "budget": "free"
+    },
+    {
+      "text": "Have a karaoke night at home",
+      "emoji": "🎤",
+      "budget": "free"
+    },
+    {
+      "text": "Do a home workout together",
+      "emoji": "🏋",
+      "budget": "free"
+    },
+    {
+      "text": "Start a book club for two",
+      "emoji": "📖",
+      "budget": "free"
+    },
+    {
+      "text": "Have a photography session",
+      "emoji": "📸",
+      "budget": "free"
+    },
+    {
+      "text": "Do some gardening together",
+      "emoji": "🌱",
+      "budget": "free"
+    },
+    {
+      "text": "Learn a new language together",
+      "emoji": "📔",
+      "budget": "free"
+    },
+    {
       "text": "Have a game night with snacks",
       "emoji": "🎲",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a local sports event",
+      "emoji": "⚽",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a trampoline park",
+      "emoji": "🎉",
+      "budget": "low"
+    },
+    {
+      "text": "Go roller skating",
+      "emoji": "🛴",
+      "budget": "low"
+    },
+    {
+      "text": "Try a new restaurant",
+      "emoji": "🍴",
+      "budget": "low"
+    },
+    {
+      "text": "Go to an arcade",
+      "emoji": "🎮",
+      "budget": "low"
+    },
+    {
+      "text": "Take a painting class",
+      "emoji": "🎨",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a comedy show",
+      "emoji": "🎅",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a local festival",
+      "emoji": "🎊",
+      "budget": "low"
+    },
+    {
+      "text": "Go ice skating",
+      "emoji": "⛸",
       "budget": "low"
     },
     {
@@ -38,15 +308,150 @@
       "budget": "medium"
     },
     {
+      "text": "Go to an amusement park",
+      "emoji": "🎡",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a couples massage",
+      "emoji": "💆",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a music festival",
+      "emoji": "🎶",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a cooking workshop",
+      "emoji": "🥘",
+      "budget": "medium"
+    },
+    {
+      "text": "Go on a food tour",
+      "emoji": "🍴",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a pottery class",
+      "emoji": "🥄",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a wine tasting",
+      "emoji": "🍷",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a sailing lesson",
+      "emoji": "⛵",
+      "budget": "medium"
+    },
+    {
+      "text": "Go on a segway tour",
+      "emoji": "🛵",
+      "budget": "medium"
+    },
+    {
       "text": "Weekend getaway to a nearby city",
       "emoji": "🏙️",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury dinner cruise",
+      "emoji": "🚢",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private yacht tour",
+      "emoji": "🛥",
+      "budget": "high"
+    },
+    {
+      "text": "Go on a shopping spree",
+      "emoji": "🛍",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury spa weekend",
+      "emoji": "💇",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private jet tour",
+      "emoji": "✈️",
+      "budget": "high"
+    },
+    {
+      "text": "Go on a helicopter tour",
+      "emoji": "🚁",
+      "budget": "high"
+    },
+    {
+      "text": "Book a luxury hotel suite",
+      "emoji": "🏨",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private cooking class",
+      "emoji": "👨‍🍳",
+      "budget": "high"
+    },
+    {
+      "text": "Plan a luxury beach vacation",
+      "emoji": "🏖",
       "budget": "high"
     }
   ],
   "serious": [
     {
       "text": "Create a time capsule together",
-      "emoji": "⏳",
+      "emoji": "⌛",
+      "budget": "free"
+    },
+    {
+      "text": "Plan your future goals together",
+      "emoji": "📝",
+      "budget": "free"
+    },
+    {
+      "text": "Have a deep conversation picnic",
+      "emoji": "🧺",
+      "budget": "free"
+    },
+    {
+      "text": "Write letters to each other",
+      "emoji": "✉️",
+      "budget": "free"
+    },
+    {
+      "text": "Create a shared bucket list",
+      "emoji": "📋",
+      "budget": "free"
+    },
+    {
+      "text": "Have a relationship check-in day",
+      "emoji": "❤️",
+      "budget": "free"
+    },
+    {
+      "text": "Create a photo album together",
+      "emoji": "📸",
+      "budget": "free"
+    },
+    {
+      "text": "Plan your ideal future home",
+      "emoji": "🏠",
+      "budget": "free"
+    },
+    {
+      "text": "Create a shared playlist",
+      "emoji": "🎵",
+      "budget": "free"
+    },
+    {
+      "text": "Have a technology-free day",
+      "emoji": "📵",
       "budget": "free"
     },
     {
@@ -55,13 +460,148 @@
       "budget": "low"
     },
     {
+      "text": "Take a relationship workshop",
+      "emoji": "💑",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a relationship counselor",
+      "emoji": "🗣️",
+      "budget": "low"
+    },
+    {
+      "text": "Create art for your home",
+      "emoji": "🎨",
+      "budget": "low"
+    },
+    {
+      "text": "Take dance lessons",
+      "emoji": "💃",
+      "budget": "low"
+    },
+    {
+      "text": "Join a couples' book club",
+      "emoji": "📚",
+      "budget": "low"
+    },
+    {
+      "text": "Start a shared hobby",
+      "emoji": "🎯",
+      "budget": "low"
+    },
+    {
+      "text": "Take a cooking class",
+      "emoji": "👩‍🍳",
+      "budget": "low"
+    },
+    {
+      "text": "Join a couples' sports league",
+      "emoji": "⚽",
+      "budget": "low"
+    },
+    {
+      "text": "Start a garden together",
+      "emoji": "🌱",
+      "budget": "low"
+    },
+    {
       "text": "Take a couples massage class",
       "emoji": "💆‍♀️",
       "budget": "medium"
     },
     {
+      "text": "Go on a weekend retreat",
+      "emoji": "🏡",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a pottery workshop",
+      "emoji": "🏺",
+      "budget": "medium"
+    },
+    {
+      "text": "Join a wine club",
+      "emoji": "🍷",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a photography course",
+      "emoji": "📷",
+      "budget": "medium"
+    },
+    {
+      "text": "Join a gym together",
+      "emoji": "🏋️",
+      "budget": "medium"
+    },
+    {
+      "text": "Take music lessons",
+      "emoji": "🎵",
+      "budget": "medium"
+    },
+    {
+      "text": "Join a meditation retreat",
+      "emoji": "🧘",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a couples' cooking course",
+      "emoji": "👨‍🍳",
+      "budget": "medium"
+    },
+    {
+      "text": "Join a tennis club",
+      "emoji": "🎾",
+      "budget": "medium"
+    },
+    {
       "text": "Plan a romantic vacation",
       "emoji": "✈️",
+      "budget": "high"
+    },
+    {
+      "text": "Buy a shared investment",
+      "emoji": "💰",
+      "budget": "high"
+    },
+    {
+      "text": "Take a luxury cruise",
+      "emoji": "🚢",
+      "budget": "high"
+    },
+    {
+      "text": "Buy matching luxury watches",
+      "emoji": "⌚",
+      "budget": "high"
+    },
+    {
+      "text": "Plan a destination wedding",
+      "emoji": "👰",
+      "budget": "high"
+    },
+    {
+      "text": "Buy a vacation property",
+      "emoji": "🏠",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private jet tour",
+      "emoji": "✈️",
+      "budget": "high"
+    },
+    {
+      "text": "Buy matching luxury cars",
+      "emoji": "🚗",
+      "budget": "high"
+    },
+    {
+      "text": "Start a business together",
+      "emoji": "💼",
+      "budget": "high"
+    },
+    {
+      "text": "Build your dream home",
+      "emoji": "🏗️",
       "budget": "high"
     }
   ],
@@ -72,8 +612,98 @@
       "budget": "free"
     },
     {
+      "text": "Have a home spa day",
+      "emoji": "🛁",
+      "budget": "free"
+    },
+    {
+      "text": "Cook a new recipe together",
+      "emoji": "🥘",
+      "budget": "free"
+    },
+    {
+      "text": "Have a game tournament",
+      "emoji": "🎲",
+      "budget": "free"
+    },
+    {
+      "text": "Do a home improvement project",
+      "emoji": "🔨",
+      "budget": "free"
+    },
+    {
+      "text": "Have a dance party at home",
+      "emoji": "💃",
+      "budget": "free"
+    },
+    {
+      "text": "Start a family tradition",
+      "emoji": "👨‍👩‍👧‍👦",
+      "budget": "free"
+    },
+    {
+      "text": "Have a picnic in the living room",
+      "emoji": "🧺",
+      "budget": "free"
+    },
+    {
+      "text": "Do a puzzle marathon",
+      "emoji": "🧩",
+      "budget": "free"
+    },
+    {
+      "text": "Have a karaoke night",
+      "emoji": "🎤",
+      "budget": "free"
+    },
+    {
       "text": "Take a family bike ride",
       "emoji": "🚲",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a local fair",
+      "emoji": "🎡",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a petting zoo",
+      "emoji": "🐑",
+      "budget": "low"
+    },
+    {
+      "text": "Go bowling as a family",
+      "emoji": "🎳",
+      "budget": "low"
+    },
+    {
+      "text": "Have a family game night",
+      "emoji": "🎮",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a drive-in movie",
+      "emoji": "🚗",
+      "budget": "low"
+    },
+    {
+      "text": "Visit a local museum",
+      "emoji": "🏛️",
+      "budget": "low"
+    },
+    {
+      "text": "Go mini golfing",
+      "emoji": "⛳",
+      "budget": "low"
+    },
+    {
+      "text": "Take a pottery class",
+      "emoji": "🏺",
+      "budget": "low"
+    },
+    {
+      "text": "Go to a local sports game",
+      "emoji": "⚾",
       "budget": "low"
     },
     {
@@ -82,8 +712,98 @@
       "budget": "medium"
     },
     {
+      "text": "Go to a water park",
+      "emoji": "🌊",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a family cooking class",
+      "emoji": "👨‍🍳",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a concert together",
+      "emoji": "🎵",
+      "budget": "medium"
+    },
+    {
+      "text": "Visit an aquarium",
+      "emoji": "🐠",
+      "budget": "medium"
+    },
+    {
+      "text": "Go on a weekend camping trip",
+      "emoji": "⛺",
+      "budget": "medium"
+    },
+    {
+      "text": "Take a family art class",
+      "emoji": "🎨",
+      "budget": "medium"
+    },
+    {
+      "text": "Go to a dinner theater",
+      "emoji": "🎭",
+      "budget": "medium"
+    },
+    {
+      "text": "Visit a science center",
+      "emoji": "🔬",
+      "budget": "medium"
+    },
+    {
+      "text": "Go horseback riding",
+      "emoji": "🐎",
+      "budget": "medium"
+    },
+    {
       "text": "Disney World vacation",
       "emoji": "🏰",
+      "budget": "high"
+    },
+    {
+      "text": "Take a family cruise",
+      "emoji": "🚢",
+      "budget": "high"
+    },
+    {
+      "text": "Go on a ski vacation",
+      "emoji": "⛷️",
+      "budget": "high"
+    },
+    {
+      "text": "Visit a tropical resort",
+      "emoji": "🌴",
+      "budget": "high"
+    },
+    {
+      "text": "Take a European vacation",
+      "emoji": "🗺️",
+      "budget": "high"
+    },
+    {
+      "text": "Go on an African safari",
+      "emoji": "🦁",
+      "budget": "high"
+    },
+    {
+      "text": "Take a private yacht trip",
+      "emoji": "⛵",
+      "budget": "high"
+    },
+    {
+      "text": "Visit multiple theme parks",
+      "emoji": "🎢",
+      "budget": "high"
+    },
+    {
+      "text": "Stay at an all-inclusive resort",
+      "emoji": "🏖️",
+      "budget": "high"
+    },
+    {
+      "text": "Take a cross-country RV trip",
+      "emoji": "🚐",
       "budget": "high"
     }
   ]
