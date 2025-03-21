@@ -16,13 +16,138 @@
       "seriousness": "casual"
     },
     {
+      "text": "My coffee maker is staging a protest",
+      "emoji": "☕",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I've been chosen for a surprise space mission",
+      "emoji": "🚀",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My keyboard only types in emojis today",
+      "emoji": "⌨️",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My clone called in sick, so I have to cover for him",
+      "emoji": "👥",
+      "seriousness": "casual"
+    },
+    {
+      "text": "Time travelers need my help fixing a paradox",
+      "emoji": "⏰",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My pet unicorn ate my laptop",
+      "emoji": "🦄",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm trapped in a Zoom meeting that's stuck in a time loop",
+      "emoji": "🔄",
+      "seriousness": "casual"
+    },
+    {
       "text": "I have a critical doctor's appointment",
       "emoji": "👨‍⚕️",
       "seriousness": "serious"
     },
     {
+      "text": "My car broke down on the way",
+      "emoji": "🚗",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm experiencing internet connectivity issues",
+      "emoji": "🌐",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I need to take care of a sick family member",
+      "emoji": "🏥",
+      "seriousness": "serious"
+    },
+    {
+      "text": "There's been a power outage in my area",
+      "emoji": "⚡",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have an important meeting with a client",
+      "emoji": "👔",
+      "seriousness": "serious"
+    },
+    {
+      "text": "My computer is having technical issues",
+      "emoji": "💻",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm stuck in traffic due to an accident",
+      "emoji": "🚦",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have an urgent dentist appointment",
+      "emoji": "🦷",
+      "seriousness": "serious"
+    },
+    {
+      "text": "There's construction blocking my route",
+      "emoji": "🚧",
+      "seriousness": "serious"
+    },
+    {
       "text": "There's an emergency situation with my family",
       "emoji": "👨‍👩‍👧‍👦",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I need to go to the emergency room",
+      "emoji": "🏥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's been a flood in my apartment",
+      "emoji": "🌊",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's a fire in my building",
+      "emoji": "🔥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I've been in a minor accident",
+      "emoji": "🚗",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My child has a medical emergency",
+      "emoji": "👶",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's a gas leak in my home",
+      "emoji": "⚠️",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I need to file a police report",
+      "emoji": "👮",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My pet needs emergency vet care",
+      "emoji": "🐾",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's been a break-in at my home",
+      "emoji": "🏠",
       "seriousness": "emergency"
     }
   ],
@@ -38,6 +163,46 @@
       "seriousness": "casual"
     },
     {
+      "text": "My shadow is refusing to follow me",
+      "emoji": "👤",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm in a dance-off with my reflection",
+      "emoji": "💃",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My imaginary friend needs emotional support",
+      "emoji": "🤗",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm attending my sock's wedding",
+      "emoji": "🧦",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My fortune cookie predicted I should stay home",
+      "emoji": "🥠",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm having a staring contest with my cat",
+      "emoji": "😺",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My Netflix queue staged an intervention",
+      "emoji": "📺",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm teaching my cactus to juggle",
+      "emoji": "🌵",
+      "seriousness": "casual"
+    },
+    {
       "text": "I'm not feeling well today",
       "emoji": "🤒",
       "seriousness": "serious"
@@ -48,8 +213,93 @@
       "seriousness": "serious"
     },
     {
+      "text": "I need to work late tonight",
+      "emoji": "💼",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have a prior commitment",
+      "emoji": "📅",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm expecting an important delivery",
+      "emoji": "📦",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have to prepare for tomorrow's presentation",
+      "emoji": "📊",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm having car troubles",
+      "emoji": "🚗",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have a migraine coming on",
+      "emoji": "🤕",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm waiting for a repair person",
+      "emoji": "🔧",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have an early morning tomorrow",
+      "emoji": "🌅",
+      "seriousness": "serious"
+    },
+    {
       "text": "There's been a family emergency",
       "emoji": "🏥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I need to take someone to the hospital",
+      "emoji": "🚑",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's been a pipe burst in my home",
+      "emoji": "🚰",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My pet needs urgent medical care",
+      "emoji": "🐾",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I'm locked out of my house",
+      "emoji": "🔑",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My wallet was stolen",
+      "emoji": "👛",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My car was broken into",
+      "emoji": "🚓",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's a security issue at my home",
+      "emoji": "🔒",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I need to help with a crisis",
+      "emoji": "🆘",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My phone was stolen",
+      "emoji": "📱",
       "seriousness": "emergency"
     }
   ],
@@ -65,6 +315,46 @@
       "seriousness": "casual"
     },
     {
+      "text": "My textbook is having an identity crisis",
+      "emoji": "📖",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My calculator only speaks Spanish now",
+      "emoji": "🧮",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My backpack joined a circus",
+      "emoji": "🎪",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My pencils are on strike",
+      "emoji": "✏️",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My notes transformed into origami",
+      "emoji": "📄",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My desk chair became a time machine",
+      "emoji": "🪑",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My laptop is meditating",
+      "emoji": "💻",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My study group got lost in a parallel universe",
+      "emoji": "🌌",
+      "seriousness": "casual"
+    },
+    {
       "text": "I'm not feeling well and need to rest",
       "emoji": "🤒",
       "seriousness": "serious"
@@ -75,8 +365,93 @@
       "seriousness": "serious"
     },
     {
+      "text": "My internet connection is down",
+      "emoji": "🌐",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have a doctor's appointment",
+      "emoji": "👨‍⚕️",
+      "seriousness": "serious"
+    },
+    {
+      "text": "My computer crashed and I lost my work",
+      "emoji": "💻",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm having transportation issues",
+      "emoji": "🚌",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I need to attend a family event",
+      "emoji": "👨‍👩‍👧‍👦",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have technical difficulties with the online platform",
+      "emoji": "🖥️",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I'm stuck in traffic",
+      "emoji": "🚗",
+      "seriousness": "serious"
+    },
+    {
+      "text": "My alarm didn't go off",
+      "emoji": "⏰",
+      "seriousness": "serious"
+    },
+    {
       "text": "I have a medical emergency",
       "emoji": "🚑",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's been a family crisis",
+      "emoji": "🏥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I've been in an accident",
+      "emoji": "🚗",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's a severe weather emergency",
+      "emoji": "🌪️",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I need to go to urgent care",
+      "emoji": "🏥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's been a break-in at my place",
+      "emoji": "🚨",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My home has flooding issues",
+      "emoji": "🌊",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "There's a fire in my building",
+      "emoji": "🔥",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "I lost my wallet with all my IDs",
+      "emoji": "👛",
+      "seriousness": "emergency"
+    },
+    {
+      "text": "My pet needs emergency care",
+      "emoji": "🐾",
       "seriousness": "emergency"
     }
   ]
