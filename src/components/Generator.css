@@ -21,6 +21,8 @@
   gap: 1rem;
   justify-content: center;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
 }
 
 .category-selector,
@@ -51,18 +53,20 @@ select:focus {
 }
 
 .generate-button {
-  background: #ffd700;
+  background: #ffeb3b;
   color: #333;
   border: none;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  margin: 2rem 0;
   position: relative;
   overflow: hidden;
   font-weight: 500;
+  width: 100%;
+  max-width: 600px;
 }
 
 .generate-button:hover {
