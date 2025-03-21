@@ -135,12 +135,12 @@ const Generator = ({ title, data, categories }) => {
       {currentItem && (
         <div className="result-container">
           <p className="result-text">{currentItem.text}</p>
-          <p className="result-text">{currentItem.emoji}</p>
+          <p className="result-text" style={{ marginTop: '0.5rem' }}>{currentItem.emoji}</p>
           <button 
             onClick={copyToClipboard} 
             className={`copy-button ${copySuccess ? 'success' : ''}`}
           >
-            {copySuccess ? '✓ Copied!' : 'Copy to Clipboard'}
+            Copy to Clipboard
           </button>
         </div>
       )}
