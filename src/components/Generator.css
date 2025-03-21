@@ -69,10 +69,9 @@ select:focus {
   margin: 1rem 0;
   position: relative;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: 400;
   width: 100%;
   max-width: 600px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .generate-button:hover {
