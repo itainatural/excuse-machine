@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#FFE135"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="300">🤔</text>
+  <rect width="492" height="492" x="10" y="10" rx="24" fill="white" stroke="#E6E6E6" stroke-width="2"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="100">🥪</text>
 </svg>
