@@ -5,10 +5,20 @@ const Generator = ({ title, data, categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedBudget, setSelectedBudget] = useState('any');
   const [selectedSeriousness, setSelectedSeriousness] = useState('any');
+  const [selectedExperience, setSelectedExperience] = useState('any');
   const [currentItem, setCurrentItem] = useState(null);
 
   const isDateIdeas = title.toLowerCase().includes('date');
+  const isBuzzwords = title.toLowerCase().includes('buzzword');
   
+  const experienceLevels = {
+    any: 'Any Level',
+    junior: 'Junior 🌱',
+    mid: 'Mid-Level 💪',
+    senior: 'Senior 🎓',
+    guru: 'Guru 🧙‍♂️'
+  };
+
   const budgetRanges = {
     any: 'Any Budget',
     free: 'Free 🆓',
@@ -42,8 +52,12 @@ const Generator = ({ title, data, categories }) => {
       filteredItems = filteredItems.filter(item => item.budget === selectedBudget);
     }
 
-    if (!isDateIdeas && selectedSeriousness !== 'any') {
+    if (!isDateIdeas && !isBuzzwords && selectedSeriousness !== 'any') {
       filteredItems = filteredItems.filter(item => item.seriousness === selectedSeriousness);
+    }
+    
+    if (isBuzzwords && selectedExperience !== 'any') {
+      filteredItems = filteredItems.filter(item => item.experience === selectedExperience);
     }
     
     if (filteredItems.length === 0) {
@@ -60,7 +74,7 @@ const Generator = ({ title, data, categories }) => {
     }
     const randomIndex = Math.floor(Math.random() * filteredItems.length);
     setCurrentItem(filteredItems[randomIndex]);
-  }, [data, selectedCategory, isDateIdeas, selectedBudget, selectedSeriousness]);
+  }, [data, selectedCategory, isDateIdeas, isBuzzwords, selectedBudget, selectedSeriousness, selectedExperience]);
 
   const copyToClipboard = useCallback(() => {
     if (!currentItem) return;
@@ -108,17 +122,30 @@ const Generator = ({ title, data, categories }) => {
             </select>
           </div>
         ) : (
-          <div className="seriousness-selector">
-            <select
-              value={selectedSeriousness}
-              onChange={(e) => setSelectedSeriousness(e.target.value)}
-            >
-              <option value="any">Any Level</option>
-              <option value="casual">Casual 😌</option>
-              <option value="serious">Serious 😐</option>
-              <option value="emergency">Emergency 😰</option>
-            </select>
-          </div>
+          isBuzzwords ? (
+            <div className="experience-selector">
+              <select
+                value={selectedExperience}
+                onChange={(e) => setSelectedExperience(e.target.value)}
+              >
+                {Object.entries(experienceLevels).map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <div className="seriousness-selector">
+              <select
+                value={selectedSeriousness}
+                onChange={(e) => setSelectedSeriousness(e.target.value)}
+              >
+                <option value="any">Any Level</option>
+                <option value="casual">Casual 😌</option>
+                <option value="serious">Serious 😐</option>
+                <option value="emergency">Emergency 😰</option>
+              </select>
+            </div>
+          )
         )}
       </div>
 
@@ -130,6 +157,9 @@ const Generator = ({ title, data, categories }) => {
         <div className="result-container">
           <p className="result-text">{currentItem.text}</p>
           <div style={{ fontSize: '48px', margin: '20px 0' }}>{currentItem.emoji}</div>
+          {isBuzzwords && currentItem.meaning && (
+            <p className="result-meaning">{currentItem.meaning}</p>
+          )}
           <button 
             onClick={copyToClipboard} 
             className="copy-button"

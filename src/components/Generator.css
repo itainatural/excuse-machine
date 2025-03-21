@@ -26,7 +26,8 @@
 
 .category-selector,
 .budget-selector,
-.seriousness-selector {
+.seriousness-selector,
+.experience-selector {
   flex: 1;
   max-width: 400px;
 }
@@ -99,6 +100,14 @@ select:focus {
   line-height: 1.4;
 }
 
+.result-meaning {
+  font-size: 16px;
+  color: #666;
+  margin: 12px 0 20px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
 .copy-button {
   background: white;
   border: 1px solid #E6E6E6;
@@ -126,7 +135,8 @@ select:focus {
 
   .category-selector,
   .budget-selector,
-  .seriousness-selector {
+  .seriousness-selector,
+  .experience-selector {
     max-width: none;
   }
 

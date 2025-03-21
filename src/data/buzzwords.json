@@ -1,0 +1,121 @@
+{
+  "creative_testing": [
+    {
+      "text": "Hook Pattern Disruption",
+      "meaning": "Testing unconventional opening lines to grab attention",
+      "emoji": "🎣"
+    },
+    {
+      "text": "Pattern Interrupt Sequencing",
+      "meaning": "Making users stop scrolling with unexpected visuals",
+      "emoji": "👀"
+    },
+    {
+      "text": "Thumb-Stopping Moment",
+      "meaning": "That split second when a user actually stops scrolling",
+      "emoji": "🛑"
+    }
+  ],
+  "ad_formats": [
+    {
+      "text": "Native Story Integration",
+      "meaning": "Ads that don't look like ads (but totally are)",
+      "emoji": "🎭"
+    },
+    {
+      "text": "Carousel Narrative Flow",
+      "meaning": "Making people swipe through multiple ad slides",
+      "emoji": "🎠"
+    },
+    {
+      "text": "Short-Form Video Loop",
+      "meaning": "Those addictive 15-second videos you can't stop watching",
+      "emoji": "🔄"
+    }
+  ],
+  "growth_levers": [
+    {
+      "text": "Creative Fatigue Index",
+      "meaning": "When your best ad stops performing because everyone's seen it",
+      "emoji": "😴"
+    },
+    {
+      "text": "Audience Expansion Loop",
+      "meaning": "Finding more people like your best customers",
+      "emoji": "🎯"
+    },
+    {
+      "text": "ROAS Recovery Pattern",
+      "meaning": "Getting your ads profitable again after iOS updates",
+      "emoji": "📱"
+    }
+  ],
+  "campaign_scaling": [
+    {
+      "text": "Budget Ramp Protocol",
+      "meaning": "Slowly increasing spend without killing performance",
+      "emoji": "📈"
+    },
+    {
+      "text": "Creative Refresh Cycle",
+      "meaning": "Making new ads before the old ones die",
+      "emoji": "♻️"
+    },
+    {
+      "text": "Winner Scaling Framework",
+      "meaning": "Throwing more money at what's working",
+      "emoji": "🏆"
+    }
+  ],
+  "creative_angles": [
+    {
+      "text": "Pain Point Amplification",
+      "meaning": "Reminding people why they need your solution",
+      "emoji": "🤕"
+    },
+    {
+      "text": "FOMO Trigger Sequence",
+      "meaning": "Making people worry about missing out",
+      "emoji": "😰"
+    },
+    {
+      "text": "Social Proof Stacking",
+      "meaning": "Showing off all your happy customers",
+      "emoji": "👥"
+    }
+  ],
+  "platform_hacks": [
+    {
+      "text": "Algorithm Pattern Match",
+      "meaning": "Making content that Facebook/TikTok loves",
+      "emoji": "🤖"
+    },
+    {
+      "text": "Engagement Bait Loop",
+      "meaning": "Getting people to comment and share",
+      "emoji": "🎣"
+    },
+    {
+      "text": "Platform Arbitrage",
+      "meaning": "Finding cheaper traffic on underused ad platforms",
+      "emoji": "💰"
+    }
+  ],
+  "testing_frameworks": [
+    {
+      "text": "Dynamic Creative Matrix",
+      "meaning": "Testing every possible combination of ad elements",
+      "emoji": "🎲"
+    },
+    {
+      "text": "Hook Library System",
+      "meaning": "Collection of opening lines that actually work",
+      "emoji": "📚"
+    },
+    {
+      "text": "Rapid Testing Velocity",
+      "meaning": "Throwing spaghetti at the wall really fast",
+      "emoji": "🍝"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "first_date": [
+    {
+      "text": "Visit a local art gallery",
+      "emoji": "🎨",
+      "budget": "free"
+    },
+    {
+      "text": "Have a picnic in the park",
+      "emoji": "🧺",
+      "budget": "low"
+    },
+    {
+      "text": "Take a cooking class together",
+      "emoji": "👩‍🍳",
+      "budget": "medium"
+    },
+    {
+      "text": "Go on a hot air balloon ride",
+      "emoji": "🎈",
+      "budget": "high"
+    }
+  ],
+  "dating": [
+    {
+      "text": "Stargaze in your backyard",
+      "emoji": "🌟",
+      "budget": "free"
+    },
+    {
+      "text": "Have a game night with snacks",
+      "emoji": "🎲",
+      "budget": "low"
+    },
+    {
+      "text": "Take a dance class together",
+      "emoji": "💃",
+      "budget": "medium"
+    },
+    {
+      "text": "Weekend getaway to a nearby city",
+      "emoji": "🏙️",
+      "budget": "high"
+    }
+  ],
+  "serious": [
+    {
+      "text": "Create a time capsule together",
+      "emoji": "⏳",
+      "budget": "free"
+    },
+    {
+      "text": "Cook a fancy dinner at home",
+      "emoji": "🍝",
+      "budget": "low"
+    },
+    {
+      "text": "Take a couples massage class",
+      "emoji": "💆‍♀️",
+      "budget": "medium"
+    },
+    {
+      "text": "Plan a romantic vacation",
+      "emoji": "✈️",
+      "budget": "high"
+    }
+  ],
+  "married": [
+    {
+      "text": "Have a backyard movie night",
+      "emoji": "🎬",
+      "budget": "free"
+    },
+    {
+      "text": "Take a family bike ride",
+      "emoji": "🚲",
+      "budget": "low"
+    },
+    {
+      "text": "Family theme park day",
+      "emoji": "🎡",
+      "budget": "medium"
+    },
+    {
+      "text": "Disney World vacation",
+      "emoji": "🏰",
+      "budget": "high"
+    }
+  ]
+}

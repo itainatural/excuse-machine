@@ -4,6 +4,7 @@ import './components/Generator.css';
 import Generator from './components/Generator';
 import excuses from './data/excuses.json';
 import dateIdeas from './data/dateIdeas.json';
+import buzzwords from './data/buzzwords.json';
 
 const MenuIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -41,6 +42,16 @@ function App() {
     married: 'Married with Kids 👨‍👩‍👧‍👦'
   };
 
+  const buzzwordCategories = {
+    creative_testing: 'Creative Testing 🧪',
+    ad_formats: 'Ad Formats 📱',
+    growth_levers: 'Growth Levers 📈',
+    campaign_scaling: 'Campaign Scaling 🚀',
+    creative_angles: 'Creative Angles 🎯',
+    platform_hacks: 'Platform Hacks ⚡',
+    testing_frameworks: 'Testing Frameworks 🔬'
+  };
+
   const generators = [
     {
       id: 'excuses',
@@ -55,6 +66,13 @@ function App() {
       emoji: '💝',
       data: dateIdeas,
       categories: dateCategories
+    },
+    {
+      id: 'buzzwords',
+      title: 'Buzzwords',
+      emoji: '🚀',
+      data: buzzwords,
+      categories: buzzwordCategories
     }
   ];
 
