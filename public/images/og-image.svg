@@ -1,14 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#FFE135"/>
-  
-  <!-- Title -->
-  <text x="600" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#333333">
-    Excuse Machine
-  </text>
-  
-  <!-- Subtitle -->
-  <text x="600" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#333333">
-    Creative Excuses &amp; Date Ideas Generator
-  </text>
+  <text x="600" y="250" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#000000">Excuse Machine</text>
+  <text x="600" y="350" dominant-baseline="middle" text-anchor="middle" font-size="120">🤔</text>
+  <text x="600" y="450" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#000000">Generate Creative Excuses &amp; Date Ideas</text>
 </svg>
