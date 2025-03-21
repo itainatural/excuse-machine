@@ -5,11 +5,14 @@
 
 .navbar {
   background: white;
-  padding: 1rem 2rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
+  border-bottom: 1px solid #dee2e6;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
 }
 
@@ -24,12 +27,14 @@
   background: none;
   border: none;
   padding: 0.5rem;
+  margin-right: 0.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #666;
   transition: color 0.3s ease;
+  font-size: 1.25rem;
 }
 
 .menu-button:hover {
@@ -45,14 +50,22 @@
 .sidebar {
   width: 250px;
   background: #f1f3f5;
-  padding: 0;
+  padding-top: 1rem;
   border-right: 1px solid #dee2e6;
-  min-height: 100vh;
+  height: 100vh;
   position: fixed;
+  top: 56px;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 
 .sidebar.open {
   transform: translateX(0);
+}
+
+.main-content.sidebar-open {
+  margin-left: 250px;
 }
 
 .nav-items {
@@ -62,13 +75,13 @@
 }
 
 .nav-item {
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   color: #666;
   transition: all 0.3s ease;
-  margin: 0.5rem;
+  margin: 0.25rem 0.75rem;
   border-radius: 8px;
 }
 
@@ -94,7 +107,9 @@
 .main-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 250px;
+  margin-left: 0;
+  margin-top: 56px;
+  transition: margin-left 0.3s ease;
 }
 
 
