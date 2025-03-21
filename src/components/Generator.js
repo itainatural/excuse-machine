@@ -77,7 +77,7 @@ const Generator = ({ title, data, categories }) => {
   return (
     <div className="generator">
       <h2>
-        {title}{' '}<span className="title-emoji">{isDateIdeas ? '💝' : '🤔'}</span>
+        {title}{' '}{isDateIdeas ? '💝' : '🤔'}
       </h2>
       
       <div className="filters-container">
@@ -124,25 +124,20 @@ const Generator = ({ title, data, categories }) => {
 
       <button onClick={generateItem} className="generate-button">
         Generate {title}
-        <span className="button-sparkle">✨</span>
       </button>
 
       {currentItem && (
         <div className="result-container">
           <p className="result-text">{currentItem.text}</p>
-          <p className="result-text" style={{ marginTop: '1rem' }}>{currentItem.emoji}</p>
+          <p>{currentItem.emoji}</p>
           <button 
             onClick={copyToClipboard} 
             className="copy-button"
-            style={{ marginTop: '1rem' }}
           >
             Copy to Clipboard
           </button>
         </div>
       )}
-      <p style={{ fontSize: '0.875rem', color: '#6c757d', marginTop: '1rem', textAlign: 'center' }}>
-        Because life's too short to always tell the truth! 😉
-      </p>
     </div>
   );
 };
