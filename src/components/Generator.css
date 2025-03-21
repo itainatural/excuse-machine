@@ -6,13 +6,9 @@
 }
 
 .generator h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #212529;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  color: #333;
 }
 
 .title-emoji {
@@ -27,7 +23,7 @@
   margin: 0;
   width: 100%;
   max-width: 600px;
-  margin-bottom: 1rem;
+  margin-top: -1rem;
 }
 
 .category-selector,
@@ -59,17 +55,17 @@ select:focus {
 
 .generate-button {
   background: #ffeb3b;
-  color: #212529;
+  color: #333;
   border: none;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 1rem 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
-  font-weight: 400;
+  font-weight: 500;
   width: 100%;
   max-width: 600px;
 }
