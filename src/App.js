@@ -77,7 +77,7 @@ function App() {
         <h1>Life Generators ✨</h1>
       </nav>
       <div className="app-layout">
-        <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+        <div className="sidebar">
           <ul className="nav-items">
             {generators.map(gen => (
               <li
@@ -91,7 +91,7 @@ function App() {
             ))}
           </ul>
         </div>
-        <div className={`main-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+        <div className="main-content">
           <div className="generator-container">
             {activeGen && (
               <Generator 

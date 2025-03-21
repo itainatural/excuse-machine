@@ -45,15 +45,10 @@
 .sidebar {
   width: 250px;
   background: #f1f3f5;
-  padding: 2rem 0;
-  box-shadow: 2px 0 4px rgba(0,0,0,0.1);
-  transform: translateX(-100%);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  transition: transform 0.3s ease;
-  z-index: 90;
+  padding: 0;
+  border-right: 1px solid #dee2e6;
+  min-height: 100vh;
+  position: fixed;
 }
 
 .sidebar.open {
@@ -67,12 +62,14 @@
 }
 
 .nav-item {
-  padding: 1rem 2rem;
+  padding: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   color: #666;
   transition: all 0.3s ease;
+  margin: 0.5rem;
+  border-radius: 8px;
 }
 
 .nav-item:hover {
@@ -83,7 +80,6 @@
 .nav-item.active {
   background: #e9ecef;
   color: #333;
-  border-right: 3px solid #ffeb3b;
 }
 
 .nav-item-emoji {
@@ -98,13 +94,10 @@
 .main-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-.main-content.sidebar-open {
   margin-left: 250px;
 }
+
+
 
 .generator-container {
   max-width: 800px;
