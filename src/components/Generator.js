@@ -129,7 +129,7 @@ const Generator = ({ title, data, categories }) => {
       {currentItem && (
         <div className="result-container">
           <p className="result-text">{currentItem.text}</p>
-          <p>{currentItem.emoji}</p>
+          <div style={{ fontSize: '48px', margin: '20px 0' }}>{currentItem.emoji}</div>
           <button 
             onClick={copyToClipboard} 
             className="copy-button"
