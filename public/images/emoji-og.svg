@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @font-face {
+      font-family: 'Apple Color Emoji';
+      src: local('Apple Color Emoji');
+    }
+    text {
+      font-family: 'Apple Color Emoji', -apple-system;
+    }
+  </style>
+  <rect width="1200" height="630" fill="white"/>
+  <rect x="100" y="100" width="1000" height="430" rx="16" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#333333">
+    Excuse Machine
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="#666666">
+    Creative Excuses &amp; Date Ideas Generator
+  </text>
+  
+  <!-- Emoji -->
+  <text x="600" y="380" text-anchor="middle" font-size="160">🤔</text>
+</svg>
