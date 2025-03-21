@@ -1,0 +1,83 @@
+{
+  "work": [
+    {
+      "text": "My cat deleted my presentation",
+      "emoji": "🐱",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm stuck in traffic because there's a parade of ducks crossing the road",
+      "emoji": "🦆",
+      "seriousness": "casual"
+    },
+    {
+      "text": "My smart home system has gone rogue and locked me in",
+      "emoji": "🏠",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I have a critical doctor's appointment",
+      "emoji": "👨‍⚕️",
+      "seriousness": "serious"
+    },
+    {
+      "text": "There's an emergency situation with my family",
+      "emoji": "👨‍👩‍👧‍👦",
+      "seriousness": "emergency"
+    }
+  ],
+  "social": [
+    {
+      "text": "My plant is having an emotional crisis",
+      "emoji": "🌱",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm teaching my goldfish synchronized swimming",
+      "emoji": "🐠",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm not feeling well today",
+      "emoji": "🤒",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have an important deadline to meet",
+      "emoji": "⏰",
+      "seriousness": "serious"
+    },
+    {
+      "text": "There's been a family emergency",
+      "emoji": "🏥",
+      "seriousness": "emergency"
+    }
+  ],
+  "school": [
+    {
+      "text": "My homework gained sentience and ran away",
+      "emoji": "📚",
+      "seriousness": "casual"
+    },
+    {
+      "text": "Time zones changed and I'm technically still sleeping",
+      "emoji": "😴",
+      "seriousness": "casual"
+    },
+    {
+      "text": "I'm not feeling well and need to rest",
+      "emoji": "🤒",
+      "seriousness": "serious"
+    },
+    {
+      "text": "There's been a power outage in my area",
+      "emoji": "⚡",
+      "seriousness": "serious"
+    },
+    {
+      "text": "I have a medical emergency",
+      "emoji": "🚑",
+      "seriousness": "emergency"
+    }
+  ]
+}
