@@ -133,17 +133,17 @@ const Generator = ({ title, data, categories }) => {
       </button>
 
       {currentItem && (
-        <div className="item-display">
-          <p>
-            <span className="item-text">{currentItem.text}</span>
-            <span className="item-emoji">{currentItem.emoji}</span>
-          </p>
+        <div className="result-container">
+          <p className="result-text">{currentItem.text} {currentItem.emoji}</p>
           <button 
             onClick={copyToClipboard} 
             className={`copy-button ${copySuccess ? 'success' : ''}`}
           >
             {copySuccess ? '✓ Copied!' : 'Copy to Clipboard'}
           </button>
+          <p style={{ marginTop: 'auto', fontSize: '0.8rem', color: '#6c757d', marginBottom: 0 }}>
+            Because life's too short to always tell the truth! 😉
+          </p>
         </div>
       )}
     </div>

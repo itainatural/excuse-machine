@@ -7,8 +7,8 @@
 
 .generator h2 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+  margin-bottom: 2rem;
+  color: #212529;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +27,7 @@
   margin: 0;
   width: 100%;
   max-width: 600px;
+  margin-bottom: 1rem;
 }
 
 .category-selector,
@@ -58,7 +59,7 @@ select:focus {
 
 .generate-button {
   background: #ffeb3b;
-  color: #333;
+  color: #212529;
   border: none;
   padding: 1rem;
   font-size: 1rem;
@@ -71,6 +72,7 @@ select:focus {
   font-weight: 500;
   width: 100%;
   max-width: 600px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .generate-button:hover {
