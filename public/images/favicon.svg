@@ -1,5 +1,9 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
   <rect width="32" height="32" rx="8" fill="#FFEB3B"/>
-  <circle cx="16" cy="16" r="10" fill="white" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"/>
-  <text x="16" y="19" text-anchor="middle" font-size="12">🤔</text>
+  <circle cx="16" cy="16" r="10" fill="white"/>
+  <path d="M16 22c3.3 0 6-2.7 6-6s-2.7-6-6-6-6 2.7-6 6 2.7 6 6 6zm0-11c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z" fill="#333"/>
+  <circle cx="13.5" cy="15" r="1.5" fill="#333"/>
+  <circle cx="18.5" cy="15" r="1.5" fill="#333"/>
+  <path d="M16 19.5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z" fill="#333"/>
 </svg>
