@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './Generator.css';
+import SpeechButton from './SpeechButton';
 
 const Generator = ({ title, data, categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -160,12 +161,15 @@ const Generator = ({ title, data, categories }) => {
           {isBuzzwords && currentItem.meaning && (
             <p className="result-meaning">{currentItem.meaning}</p>
           )}
-          <button 
-            onClick={copyToClipboard} 
-            className="copy-button"
-          >
-            Copy to Clipboard
-          </button>
+          <div className="action-buttons">
+            <button 
+              onClick={copyToClipboard} 
+              className="copy-button"
+            >
+              📋 Copy to Clipboard
+            </button>
+            <SpeechButton text={currentItem.text} />
+          </div>
         </div>
       )}
     </div>

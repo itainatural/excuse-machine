@@ -115,6 +115,13 @@ select:focus {
   font-style: italic;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .copy-button {
   background: white;
   border: 1px solid #E6E6E6;
@@ -124,6 +131,9 @@ select:focus {
   color: #333;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .copy-button:hover {
