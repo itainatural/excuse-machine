@@ -1,4 +1,4 @@
-.generator {
+.generator, .image-generator {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
@@ -123,12 +123,151 @@ select:focus {
   background: #f8f9fa;
 }
 
+.image-generator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.image-generator h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.filter-group {
+  flex: 1;
+}
+
+.slider-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #ddd;
+  outline: none;
+  margin: 10px 0;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFE135;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #FFD700;
+  transform: scale(1.1);
+}
+
+.prompt-input {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.text-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #FFE135;
+}
+
+.image-container {
+  aspect-ratio: 1;
+  max-width: 512px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
+  position: relative;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  color: #666;
+}
+
+.placeholder-content {
+  text-align: center;
+}
+
+.placeholder-content span {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.loading-text {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  color: #dc3545;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.reflection {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1));
+}
+
 @media (max-width: 768px) {
-  .generator {
+  .generator, .image-generator {
     padding: 1rem;
   }
 
-  .filters-container {
+  .filters-container, .filters {
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -142,5 +281,17 @@ select:focus {
 
   .result-container {
     padding: 1.5rem;
+  }
+
+  .prompt-input {
+    flex-direction: column;
+  }
+
+  .text-input {
+    width: 100%;
+  }
+
+  .generate-button {
+    width: 100%;
   }
 }
