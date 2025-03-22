@@ -77,7 +77,7 @@ const ImageGenerator = () => {
   const generateImage = async () => {
     if (!prompt || isLoading) return;
     setError(null);
-    setShowPlaceholder(true);
+
     setLoadingMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)]);
 
     try {
