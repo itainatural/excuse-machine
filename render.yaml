@@ -2,6 +2,7 @@ services:
   - type: web
     name: excuse-machine-api
     env: node
+    rootDir: server
     buildCommand: npm install
     startCommand: npm start
     envVars:
