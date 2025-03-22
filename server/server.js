@@ -36,6 +36,32 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Generate speech endpoint
+app.post('/api/generate-speech', async (req, res) => {
+  try {
+    const { text, voice = 'alloy', model = 'tts-1', speed = 1.0 } = req.body;
+    if (!text) {
+      return res.status(400).json({ error: 'Text is required' });
+    }
+
+    const mp3 = await openai.audio.speech.create({
+      model,
+      voice,
+      input: text,
+      speed
+    });
+
+    // Convert to base64
+    const buffer = Buffer.from(await mp3.arrayBuffer());
+    const base64Audio = buffer.toString('base64');
+
+    res.json({ audio: base64Audio });
+  } catch (error) {
+    console.error('Error generating speech:', error);
+    res.status(500).json({ error: 'Failed to generate speech' });
+  }
+});
+
 // Generate image endpoint
 app.post('/api/generate-image', async (req, res) => {
   try {

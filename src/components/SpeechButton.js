@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import OpenAI from 'openai';
-import { Buffer } from 'buffer';
 
 const SpeechButton = ({ 
   text, 
@@ -26,14 +24,7 @@ const SpeechButton = ({
     try {
       console.log('Starting speech generation...');
       setIsPlaying(true);
-      
-      console.log('API Key:', process.env.REACT_APP_OPENAI_API_KEY ? 'Present' : 'Missing');
-      const openai = new OpenAI({
-        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-        dangerouslyAllowBrowser: true
-      });
 
-      console.log('Creating speech with text:', text);
       // Get voice settings based on content type and seriousness
       const getVoiceSettings = () => {
         // Dynamic voice selection
@@ -48,29 +39,38 @@ const SpeechButton = ({
           voiceType = 'echo';
         }
 
-        const settings = {
+        return {
           voice: voiceType,
           speed: seriousness === 'casual' ? 1.1 : 0.9,
-          // Adjust other settings based on context
           model: type === 'buzzwords' ? 'tts-1-hd' : 'tts-1'
         };
-
-        return settings;
       };
 
       const voiceSettings = getVoiceSettings();
-      const mp3 = await openai.audio.speech.create({
-        model: voiceSettings.model,
-        voice: voiceSettings.voice,
-        input: text,
-        speed: voiceSettings.speed
+      const response = await fetch('https://excuse-machine-api.onrender.com/api/generate-speech', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text,
+          ...voiceSettings
+        })
       });
 
-      // Convert the response to a Buffer
-      const buffer = Buffer.from(await mp3.arrayBuffer());
+      if (!response.ok) {
+        throw new Error('Failed to generate speech');
+      }
+
+      const { audio } = await response.json();
       
-      // Create a blob URL from the buffer
-      const blob = new Blob([buffer], { type: 'audio/mp3' });
+      // Convert base64 to blob
+      const binaryString = window.atob(audio);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const blob = new Blob([bytes], { type: 'audio/mp3' });
       const url = URL.createObjectURL(blob);
       
       setAudioUrl(url);
