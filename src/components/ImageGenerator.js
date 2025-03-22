@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import OpenAI from 'openai';
 import './Generator.css';
 
 const imageStyles = {
@@ -83,10 +82,11 @@ const ImageGenerator = () => {
 
     try {
       setIsLoading(true);
-      const openai = new OpenAI({
-        apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-        dangerouslyAllowBrowser: true
-      });
+      if (!prompt.trim()) {
+        setError('Please enter a prompt');
+        setIsLoading(false);
+        return;
+      }
 
       const weirdLevel = weirdness > 70 ? 'extremely surreal and weird' : 
                         weirdness > 40 ? 'quirky and unusual' : 
@@ -94,23 +94,21 @@ const ImageGenerator = () => {
       
       const fullPrompt = `Create an image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging and fun!`;
       console.log('Generating image with prompt:', fullPrompt);
-      
-      if (!prompt.trim()) {
-        setError('Please enter a prompt');
-        setIsLoading(false);
-        return;
-      }
 
-      const response = await openai.images.generate({
-        model: "dall-e-3",
-        prompt: fullPrompt,
-        n: 1,
-        size: "1024x1024",
-        quality: "standard",
-        style: "vivid"
+      const response = await fetch('https://excuse-machine.onrender.com/api/generate-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: fullPrompt })
       });
 
-      setImageUrl(response.data[0].url);
+      if (!response.ok) {
+        throw new Error('Failed to generate image');
+      }
+
+      const data = await response.json();
+      setImageUrl(data.url);
     } catch (error) {
       console.error('Image generation error:', error);
       setError(error.message || 'Failed to generate image');
