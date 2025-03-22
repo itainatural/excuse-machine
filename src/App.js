@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import './components/Generator.css';
 import Generator from './components/Generator';
+import ImageGenerator from './components/ImageGenerator';
 import excuses from './data/excuses.json';
 import dateIdeas from './data/dateIdeas.json';
 import buzzwords from './data/buzzwords.json';
@@ -58,21 +59,30 @@ function App() {
       title: 'Excuses',
       emoji: '🤔',
       data: excuses,
-      categories: excuseCategories
+      categories: excuseCategories,
+      component: Generator
     },
     {
       id: 'date',
       title: 'Date Ideas',
       emoji: '💝',
       data: dateIdeas,
-      categories: dateCategories
+      categories: dateCategories,
+      component: Generator
     },
     {
       id: 'buzzwords',
       title: 'Buzzwords',
       emoji: '🚀',
       data: buzzwords,
-      categories: buzzwordCategories
+      categories: buzzwordCategories,
+      component: Generator
+    },
+    {
+      id: 'visions',
+      title: 'Visions',
+      emoji: '🎨',
+      component: ImageGenerator
     }
   ];
 
@@ -112,11 +122,15 @@ function App() {
         <div className={`main-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
           <div className="generator-container">
             {activeGen && (
-              <Generator 
-                title={activeGen.title}
-                data={activeGen.data}
-                categories={activeGen.categories}
-              />
+              activeGen.component === Generator ? (
+                <Generator 
+                  title={activeGen.title}
+                  data={activeGen.data}
+                  categories={activeGen.categories}
+                />
+              ) : (
+                <activeGen.component />
+              )
             )}
           </div>
           <div className="footer">
