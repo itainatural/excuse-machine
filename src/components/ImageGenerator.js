@@ -54,7 +54,7 @@ const ImageGenerator = () => {
   const [weirdness, setWeirdness] = useState(30);
   const [imageUrl, setImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [showPlaceholder, setShowPlaceholder] = useState(false);
+
 
 
   const loadingMessages = [
@@ -143,34 +143,32 @@ const ImageGenerator = () => {
               ))}
             </select>
           </div>
+        </div>
 
-          <div className="filter-group">
-            <div className="slider-control">
-              <div className="slider-label">Weirdness</div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={weirdness}
-                onChange={(e) => {
-                  const value = parseInt(e.target.value);
-                  setWeirdness(value);
-                  const slider = e.target;
-                  const percent = (value - slider.min) / (slider.max - slider.min);
-                  slider.style.setProperty('--value-percent', `${percent * 100}%`);
-                }}
-                className="slider"
-
-
-                ref={(el) => {
-                  if (el) {
-                    const percent = (weirdness - el.min) / (el.max - el.min);
-                    el.style.setProperty('--value-percent', `${percent * 100}%`);
-                  }
-                }}
-              />
-
-            </div>
+        <div className="filter-group">
+          <div className="slider-control">
+            <div className="slider-label">Weirdness</div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={weirdness}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setWeirdness(value);
+                const slider = e.target;
+                const percent = (value - slider.min) / (slider.max - slider.min);
+                slider.style.setProperty('--value-percent', `${percent * 100}%`);
+              }}
+              className="slider"
+              ref={(el) => {
+                if (el) {
+                  const percent = (weirdness - el.min) / (el.max - el.min);
+                  el.style.setProperty('--value-percent', `${percent * 100}%`);
+                }
+              }}
+            />
+            <div className="slider-value">{weirdness}%</div>
           </div>
         </div>
 
@@ -187,46 +185,37 @@ const ImageGenerator = () => {
             disabled={!prompt || isLoading}
             className={`generate-button ${isLoading ? 'loading' : ''}`}
           >
-            {isLoading ? '...' : (
-              <>
-                <span className="material-symbols-outlined">
-                  auto_awesome
-                </span>
-              </>
-            )}
+            {isLoading ? '🎨 Generating...' : '✨ Generate'}
           </button>
         </div>
       </div>
 
       {error && (
         <div className="error-message">
-          ❌
-          {error}
+          ❌ {error}
         </div>
       )}
 
-      {showPlaceholder && (
-        <div className="image-container">
-          {isLoading ? (
-            <div className="image-placeholder">
-              <div className="placeholder-content">
-                <span>🎨</span>
-                <div className="loading-text">{loadingMessage}</div>
-              </div>
-              <div className="reflection"></div>
+      <div className="image-container">
+        {isLoading ? (
+          <div className="image-placeholder">
+            <div className="placeholder-content">
+              <span>🎨</span>
+              <div className="loading-text">{loadingMessage}</div>
             </div>
-          ) : imageUrl ? (
-            <img src={imageUrl} alt="Generated content" />
-          ) : (
-            <div className="image-placeholder empty">
-              <div className="placeholder-content">
-                <span>🖼️</span>
-                <div className="placeholder-text">Your image will appear here</div>
-              </div>
+            <div className="reflection"></div>
+          </div>
+        ) : imageUrl ? (
+          <img src={imageUrl} alt="Generated content" />
+        ) : (
+          <div className="image-placeholder empty">
+            <div className="placeholder-content">
+              <span>🖼️</span>
+              <div className="placeholder-text">Your image will appear here</div>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
