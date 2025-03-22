@@ -14,16 +14,21 @@ const openai = new OpenAI({
 // Configure CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? 'https://itainatural.github.io'
+    ? ['https://excuse-machine.netlify.app', 'https://itainatural.github.io']
     : 'http://localhost:3000',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true
 }));
 app.use(express.json());
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok' });
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV,
+    openai: openai.apiKey ? 'configured' : 'missing'
+  });
 });
 
 // Generate image endpoint
