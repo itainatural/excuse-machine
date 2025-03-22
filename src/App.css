@@ -33,9 +33,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
-  transition: color 0.3s ease;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.menu-button:hover {
+  transform: scale(1.1);
 }
 
 .menu-button:hover {

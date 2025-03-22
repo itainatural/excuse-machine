@@ -7,11 +7,7 @@ import excuses from './data/excuses.json';
 import dateIdeas from './data/dateIdeas.json';
 import buzzwords from './data/buzzwords.json';
 
-const MenuIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" />
-  </svg>
-);
+
 
 const QuestionIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -100,9 +96,8 @@ function App() {
           onClick={() => setSidebarOpen(!isSidebarOpen)}
           aria-label="Toggle menu"
         >
-          <MenuIcon />
+          🍔
         </button>
-        <span style={{ fontSize: '1.5rem' }}>🍔</span>
         <h1>Life Hacks</h1>
       </nav>
       <div className="app-layout">
