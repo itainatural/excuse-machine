@@ -5,23 +5,23 @@
 
 .navbar {
   background: white;
-  padding: 0 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   border-bottom: 1px solid #dee2e6;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  height: 56px;
 }
 
 .navbar h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #333;
-  margin-left: 1rem;
+  font-weight: 600;
 }
 
 .menu-button {

@@ -102,7 +102,8 @@ function App() {
         >
           <MenuIcon />
         </button>
-        <h1>Life Generators ✨</h1>
+        <span style={{ fontSize: '1.5rem' }}>🍔</span>
+        <h1>Life Hacks</h1>
       </nav>
       <div className="app-layout">
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
