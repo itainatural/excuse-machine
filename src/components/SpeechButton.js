@@ -1,4 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import './SpeechButton.css';
+
+const MicrophoneIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" />
+  </svg>
+);
 
 const SpeechButton = ({ 
   text, 
@@ -10,6 +18,16 @@ const SpeechButton = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioUrl, setAudioUrl] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const animationTimeoutRef = useRef(null);
+  
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const voices = {
     alloy: { emoji: '🤖', name: 'Alloy' },
@@ -92,7 +110,13 @@ const SpeechButton = ({
 
   const handleClick = () => {
     if (!isPlaying) {
+      setIsAnimating(true);
       generateSpeech();
+      
+      // Reset animation after 2 seconds
+      animationTimeoutRef.current = setTimeout(() => {
+        setIsAnimating(false);
+      }, 2000);
     }
   };
 
