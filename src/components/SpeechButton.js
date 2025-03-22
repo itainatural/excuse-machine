@@ -47,7 +47,7 @@ const SpeechButton = ({
       };
 
       const voiceSettings = getVoiceSettings();
-      const response = await fetch('https://excuse-machine-api.onrender.com/api/generate-speech', {
+      const response = await fetch('https://excuse-machine.onrender.com/api/generate-speech', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
