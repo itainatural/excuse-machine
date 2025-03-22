@@ -6,6 +6,11 @@ const OpenAI = require('openai');
 const app = express();
 const port = process.env.PORT || 3001;
 
+// Disable serving static files
+app.set('x-powered-by', false);
+app.disable('static');
+
+
 // Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -53,6 +58,11 @@ app.post('/api/generate-image', async (req, res) => {
     console.error('Error generating image:', error);
     res.status(500).json({ error: 'Failed to generate image' });
   }
+});
+
+// Catch-all route for non-API requests
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Not found. This is an API server.' });
 });
 
 app.listen(port, () => {
