@@ -6,51 +6,23 @@ const imageStyles = {
     label: "Cartoon",
     prompt: "in a fun cartoon style"
   },
-  pixel: {
-    label: "Pixel Art",
-    prompt: "as detailed pixel art"
-  },
   meme: {
-    label: "Meme",
+    label: "Meme Style 😂",
     prompt: "as a funny meme"
-  },
-  comic: {
-    label: "Comic",
-    prompt: "as a comic book panel"
-  },
-  claymation: {
-    label: "Clay",
-    prompt: "in claymation style"
   }
 };
 
 const imageMoods = {
-  meme: {
-    label: "Meme Style 😂",
-    prompt: "internet meme style, funny and viral-worthy, exaggerated humor"
-  },
-  derp: {
-    label: "Derpy 🤪",
-    prompt: "silly and goofy, derpy style, intentionally awkward and funny"
-  },
-  epic: {
-    label: "Epic Win 🏆",
-    prompt: "over-the-top awesome, epic win moment, triumphant and hilarious"
-  },
-  fail: {
-    label: "Epic Fail 🤦‍♂️",
-    prompt: "comical fail moment, funny disaster, humorous mishap"
-  },
-  chaos: {
-    label: "Pure Chaos 🌪️",
-    prompt: "absolute mayhem, hilariously chaotic, unexpected combinations"
+  any: {
+    label: "Any Level",
+    prompt: "balanced and natural style"
   }
 };
 
 const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('cartoon');
-  const [selectedMood, setSelectedMood] = useState('meme');
+  const [selectedMood, setSelectedMood] = useState('any');
   const [weirdness, setWeirdness] = useState(30);
   const [imageUrl, setImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
