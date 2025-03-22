@@ -62,10 +62,10 @@ const SpeechButton = ({
         throw new Error('Failed to generate speech');
       }
 
-      const { audio } = await response.json();
+      const { audio: audioData } = await response.json();
       
       // Convert base64 to blob
-      const binaryString = window.atob(audio);
+      const binaryString = window.atob(audioData);
       const bytes = new Uint8Array(binaryString.length);
       for (let i = 0; i < binaryString.length; i++) {
         bytes[i] = binaryString.charCodeAt(i);
@@ -76,11 +76,11 @@ const SpeechButton = ({
       setAudioUrl(url);
       
       // Play the audio
-      const audio = new Audio(url);
-      audio.play();
+      const audioPlayer = new Audio(url);
+      audioPlayer.play();
       
       // Clean up when audio finishes playing
-      audio.onended = () => {
+      audioPlayer.onended = () => {
         setIsPlaying(false);
         URL.revokeObjectURL(url);
       };
