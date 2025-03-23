@@ -174,24 +174,12 @@ const ImageGenerator = () => {
         </div>
       )}
 
-      <div className="image-container">
-        {isLoading ? (
-          <div className="image-placeholder">
-            <div className="placeholder-content">
-              <span>🎨</span>
-              <div className="loading-text">{loadingMessage}</div>
-            </div>
-            <div className="reflection"></div>
-          </div>
-        ) : imageUrl ? (
+      <div className={`image-container ${(isLoading || imageUrl) ? 'visible' : ''} ${isLoading ? 'loading' : ''}`}>
+        {imageUrl && !isLoading && (
           <img src={imageUrl} alt="Generated content" />
-        ) : (
-          <div className="image-placeholder empty">
-            <div className="placeholder-content">
-              <span>🖼️</span>
-              <div className="placeholder-text">Your image will appear here</div>
-            </div>
-          </div>
+        )}
+        {isLoading && (
+          <div className="loading-text">{loadingMessage}</div>
         )}
       </div>
     </div>
