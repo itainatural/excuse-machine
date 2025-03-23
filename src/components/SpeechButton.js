@@ -53,6 +53,8 @@ const SpeechButton = ({
           voiceType = 'nova';
         } else if (type === 'buzzwords' && selectedExperience === 'guru') {
           voiceType = 'onyx';
+        } else if (type === 'visions') {
+          voiceType = seriousness === 'quirky' ? 'fable' : 'shimmer';
         } else {
           voiceType = 'echo';
         }

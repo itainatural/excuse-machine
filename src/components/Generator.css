@@ -199,6 +199,13 @@ select:focus {
   color: #666;
 }
 
+.speech-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
 .slider {
   appearance: none;
   -webkit-appearance: none;

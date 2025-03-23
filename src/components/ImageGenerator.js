@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Generator.css';
+import SpeechButton from './SpeechButton';
 
 const imageStyles = {
   cartoon: {
@@ -187,6 +188,16 @@ const ImageGenerator = () => {
           <div className="loading-text">{loadingMessage}</div>
         )}
       </div>
+
+      {imageUrl && !isLoading && (
+        <div className="speech-button-container">
+          <SpeechButton 
+            text={`Here's what I generated based on your request: ${prompt}. The image shows ${imageStyles[selectedStyle].label} style with ${weirdness}% weirdness level.`}
+            type="visions"
+            seriousness={weirdness > 70 ? 'quirky' : 'casual'}
+          />
+        </div>
+      )}
     </div>
   );
 };
