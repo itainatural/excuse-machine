@@ -45,24 +45,38 @@ const SpeechButton = ({
 
       // Get voice settings based on content type and seriousness
       const getVoiceSettings = () => {
-        // Dynamic voice selection
-        let voiceType;
-        if (type === 'dates') {
-          voiceType = 'coral';
-        } else if (type === 'excuses') {
-          voiceType = 'nova';
-        } else if (type === 'buzzwords' && selectedExperience === 'guru') {
-          voiceType = 'onyx';
-        } else if (type === 'visions') {
-          voiceType = seriousness === 'quirky' ? 'fable' : 'shimmer';
-        } else {
-          voiceType = 'echo';
+        // Dynamic voice and model selection based on content type
+        let voiceType, modelType;
+
+        // Set model type first
+        modelType = 'tts-1-hd'; // Always use HD quality
+
+        // Dynamic voice selection based on content type
+        switch (type) {
+          case 'dates':
+            voiceType = seriousness === 'casual' ? 'nova' : 'shimmer'; // Playful vs Romantic
+            break;
+          case 'excuses':
+            voiceType = seriousness === 'casual' ? 'echo' : 'onyx'; // Casual vs Professional
+            break;
+          case 'buzzwords':
+            if (selectedExperience === 'guru') {
+              voiceType = 'onyx'; // Authoritative voice for experts
+            } else {
+              voiceType = 'fable'; // Engaging voice for regular content
+            }
+            break;
+          case 'visions':
+            voiceType = seriousness === 'quirky' ? 'fable' : 'shimmer';
+            break;
+          default:
+            voiceType = 'alloy'; // Neutral fallback voice
         }
 
         return {
           voice: voiceType,
           speed: seriousness === 'casual' ? 1.1 : 0.9,
-          model: type === 'buzzwords' ? 'tts-1-hd' : 'tts-1'
+          model: modelType
         };
       };
 
