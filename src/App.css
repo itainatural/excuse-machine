@@ -1,6 +1,8 @@
 .App {
   min-height: 100vh;
   background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -49,7 +51,8 @@
 .app-layout {
   display: flex;
   position: relative;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
 }
 
 .sidebar {
@@ -71,6 +74,7 @@
 
 .main-content.sidebar-open {
   margin-left: 250px;
+  margin-right: -250px;
 }
 
 .nav-items {
@@ -113,11 +117,12 @@
 
 .main-content {
   flex: 1;
-  padding: 0;
-  margin-left: 0;
-  margin-top: 56px;
+  padding: 2rem;
+  margin: 0 auto;
   transition: margin-left 0.3s ease;
   background: white;
+  max-width: 1200px;
+  width: 100%;
 }
 
 
@@ -125,6 +130,7 @@
 .generator-container {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .footer {
@@ -161,13 +167,18 @@
 
   .main-content.sidebar-open {
     margin-left: 0;
+    margin-right: 0;
   }
 
   .navbar {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
   }
 
-  .navbar h1 {
-    font-size: 1.2rem;
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .generator-container {
+    padding: 0;
   }
 }
