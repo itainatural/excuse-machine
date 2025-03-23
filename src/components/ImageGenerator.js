@@ -104,6 +104,7 @@ const ImageGenerator = () => {
             <select 
               value={selectedStyle} 
               onChange={(e) => setSelectedStyle(e.target.value)}
+              className="style-selector"
             >
               {Object.entries(imageStyles).map(([key, { label }]) => (
                 <option key={key} value={key}>{label}</option>
@@ -115,56 +116,60 @@ const ImageGenerator = () => {
             <select 
               value={selectedMood} 
               onChange={(e) => setSelectedMood(e.target.value)}
+              className="mood-selector"
             >
               {Object.entries(imageMoods).map(([key, { label }]) => (
                 <option key={key} value={key}>{label}</option>
               ))}
             </select>
           </div>
-        </div>
 
-        <div className="filter-group">
-          <div className="slider-control">
-            <div className="slider-label">Weirdness</div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={weirdness}
-              onChange={(e) => {
-                const value = parseInt(e.target.value);
-                setWeirdness(value);
-                const slider = e.target;
-                const percent = (value - slider.min) / (slider.max - slider.min);
-                slider.style.setProperty('--value-percent', `${percent * 100}%`);
-              }}
-              className="slider"
-              ref={(el) => {
-                if (el) {
-                  const percent = (weirdness - el.min) / (el.max - el.min);
-                  el.style.setProperty('--value-percent', `${percent * 100}%`);
-                }
-              }}
-            />
-            <div className="slider-value">{weirdness}%</div>
+          <div className="filter-group">
+            <div className="slider-container">
+              <div className="slider-header">
+                <span>Weirdness</span>
+                <span>{weirdness}%</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={weirdness}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value);
+                  setWeirdness(value);
+                }}
+                className="slider"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="prompt-input">
-          <input
-            type="text"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="A happy alligator celebrating being acquired..."
-            className="text-input"
-          />
-          <button 
-            onClick={generateImage} 
-            disabled={!prompt || isLoading}
-            className={`generate-button ${isLoading ? 'loading' : ''}`}
-          >
-            {isLoading ? '🎨 Generating...' : '✨ Generate'}
-          </button>
+
+        <div className="prompt-container">
+          <div className="input-group">
+            <input
+              type="text"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="A happy alligator celebrating..."
+              className="text-input"
+            />
+            <button 
+              onClick={generateImage} 
+              disabled={!prompt || isLoading}
+              className={`generate-button ${isLoading ? 'loading' : ''}`}
+            >
+              <span className="button-content">
+                <span className="stars-icon">
+                  <StarsIcon />
+                </span>
+                <span className="button-text">
+                  {isLoading ? 'Generating...' : 'Generate'}
+                </span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
