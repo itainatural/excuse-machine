@@ -174,7 +174,14 @@ const Generator = ({ title, data, categories }) => {
             >
               📋 Copy to Clipboard
             </button>
-            <SpeechButton text={currentItem.text} />
+            <SpeechButton 
+              text={currentItem.text}
+              meaning={currentItem.meaning}
+              seriousness={selectedSeriousness}
+              selectedBudget={selectedBudget}
+              selectedExperience={selectedExperience}
+              type={isDateIdeas ? 'dates' : (isBuzzwords ? 'buzzwords' : 'excuses')}
+            />
           </div>
         </div>
       )}
