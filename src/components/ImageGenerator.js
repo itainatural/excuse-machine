@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Generator.css';
 import SpeechButton from './SpeechButton';
 
@@ -20,9 +20,10 @@ const imageMoods = {
   }
 };
 
-const StarsIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinecap="round" strokeLinejoin="round"/>
+const MicrophoneIcon = ({ isRecording }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isRecording ? "#FF3B30" : "currentColor"} strokeWidth="2">
+    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" />
   </svg>
 );
 
@@ -33,6 +34,59 @@ const ImageGenerator = () => {
   const [weirdness, setWeirdness] = useState(30);
   const [imageUrl, setImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recognition, setRecognition] = useState(null);
+
+  useEffect(() => {
+    // Initialize speech recognition
+    if (window.webkitSpeechRecognition) {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setPrompt(transcript);
+        setIsRecording(false);
+        // Auto-generate after voice input
+        generateImage();
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        setIsRecording(false);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+
+      setRecognition(recognition);
+    }
+  }, []);
+
+  const toggleRecording = () => {
+    if (!recognition) {
+      alert('Speech recognition is not supported in your browser');
+      return;
+    }
+
+    if (isRecording) {
+      recognition.stop();
+    } else {
+      setPrompt('');
+      recognition.start();
+      setIsRecording(true);
+    }
+  };
+
+  const handleKeyPress = async (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && prompt.trim() && !isLoading) {
+      e.preventDefault();
+      await generateImage();
+    }
+  };
 
 
 
@@ -153,22 +207,18 @@ const ImageGenerator = () => {
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="A happy alligator celebrating..."
+              onKeyDown={handleKeyPress}
+              placeholder="Type your vision and press Enter, or use voice input →"
               className="text-input"
+              disabled={isLoading}
             />
-            <button 
-              onClick={generateImage} 
-              disabled={!prompt || isLoading}
-              className={`generate-button ${isLoading ? 'loading' : ''}`}
+            <button
+              onClick={toggleRecording}
+              className={`voice-input-button ${isRecording ? 'recording' : ''}`}
+              title={isRecording ? 'Stop recording' : 'Start voice input'}
+              disabled={isLoading}
             >
-              <span className="button-content">
-                <span className="stars-icon">
-                  <StarsIcon />
-                </span>
-                <span className="button-text">
-                  {isLoading ? 'Generating...' : 'Generate'}
-                </span>
-              </span>
+              <MicrophoneIcon isRecording={isRecording} />
             </button>
           </div>
         </div>

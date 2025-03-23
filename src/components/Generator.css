@@ -62,35 +62,40 @@ select:focus {
   border-color: #ccc;
 }
 
-.generate-button {
-  width: 100%;
-  max-width: 800px;
-  background: #1C1C1C;
-  color: white;
-  border: none;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0 auto;
-  font-weight: 500;
+.voice-input-button {
+  background: white;
+  border: 1px solid #E6E6E6;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.generate-button:hover {
-  background: #2C2C2C;
+.voice-input-button:hover:not(:disabled) {
+  background: #f8f9fa;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.button-sparkle {
-  display: inline;
-  font-size: 1.2rem;
+.voice-input-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.voice-input-button.recording {
+  background: #FFF5F5;
+  border-color: #FF3B30;
+  animation: pulse 2s infinite;
+}
+
+.voice-input-button.recording:hover:not(:disabled) {
+  background: #FFE5E5;
 }
 
 .result-container {
@@ -243,16 +248,29 @@ select:focus {
 
 .text-input {
   flex: 1;
-  padding: 1rem;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  font-size: 1rem;
-  color: #333;
+  padding: 16px;
+  border: 1px solid #E6E6E6;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  line-height: 1.5;
 }
 
 .text-input:focus {
   outline: none;
-  border-color: #FFE135;
+  border-color: #007AFF;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.text-input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+.text-input:disabled {
+  background: #f8f9fa;
+  cursor: not-allowed;
 }
 
 .image-container {
@@ -343,14 +361,22 @@ select:focus {
 
 @keyframes pulse {
   0% {
-    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4);
   }
-  50% {
-    opacity: 0.8;
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
   }
   100% {
-    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
   }
+}
+
+.loading-indicator {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+  font-style: italic;
 }
 
 .prompt-container {
