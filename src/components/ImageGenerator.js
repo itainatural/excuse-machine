@@ -178,26 +178,24 @@ const ImageGenerator = () => {
               ))}
             </select>
           </div>
+        </div>
 
-          <div className="filter-group">
-            <div className="slider-container">
-              <div className="slider-header">
-                <span>Weirdness</span>
-                <span>{weirdness}%</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={weirdness}
-                onChange={(e) => {
-                  const value = parseInt(e.target.value);
-                  setWeirdness(value);
-                }}
-                className="slider"
-              />
-            </div>
+        <div className="slider-container">
+          <div className="slider-header">
+            <span>Weirdness</span>
+            <span>{weirdness}%</span>
           </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={weirdness}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setWeirdness(value);
+            }}
+            className="slider"
+          />
         </div>
 
 
