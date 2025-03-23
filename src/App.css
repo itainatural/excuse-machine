@@ -163,11 +163,16 @@
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
+    max-width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.98);
   }
 
   .main-content.sidebar-open {
     margin-left: 0;
     margin-right: 0;
+    filter: blur(2px);
+    pointer-events: none;
   }
 
   .navbar {
@@ -175,10 +180,42 @@
   }
 
   .main-content {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .generator-container {
     padding: 0;
+  }
+
+  .filters {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .prompt-input-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .prompt-input {
+    width: 100%;
+  }
+
+  .stars-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .image-container {
+    margin: 1rem 0;
+  }
+
+  .result-container {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .result-text {
+    font-size: 1.25rem;
   }
 }
