@@ -10,6 +10,10 @@ const imageStyles = {
   meme: {
     label: "Meme Style 😂",
     prompt: "as a funny meme"
+  },
+  realistic: {
+    label: "Realistic 📸",
+    prompt: "in a photorealistic style, highly detailed"
   }
 };
 

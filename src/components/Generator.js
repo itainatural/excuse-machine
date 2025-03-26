@@ -3,17 +3,8 @@ import './Generator.css';
 import SpeechButton from './SpeechButton';
 
 const SparkleIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-  </svg>
-);
-
-const MicIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M19 10v2a7 7 0 0 1-14 0v-2" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="12" y1="19" x2="12" y2="23" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="8" y1="23" x2="16" y2="23" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.5 10.5L21 12l-1.5-1.5L18 12l1.5-1.5zM12 4.5L13.5 6 12 4.5 10.5 6 12 4.5zM4.5 10.5L6 12l-1.5-1.5L3 12l1.5-1.5z"/>
   </svg>
 );
 
@@ -95,14 +86,27 @@ const Generator = ({ title, data, categories }) => {
 
   const copyToClipboard = useCallback(() => {
     if (!currentItem) return;
-    
-    const fullText = `${currentItem.text} ${currentItem.emoji}`;
-    navigator.clipboard.writeText(fullText)
+    navigator.clipboard.writeText(currentItem.text)
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       })
-      .catch(err => console.error('Failed to copy text: ', err));
+      .catch(err => {
+        console.error('Failed to copy text:', err);
+        // Fallback for browsers that don't support clipboard API
+        const textArea = document.createElement('textarea');
+        textArea.value = currentItem.text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch (e) {
+          console.error('Fallback copy failed:', e);
+        }
+        document.body.removeChild(textArea);
+      });
   }, [currentItem]);
 
   if (!data || !categories) {
@@ -112,7 +116,7 @@ const Generator = ({ title, data, categories }) => {
   return (
     <div className="generator">
       <h2>
-        {title}{' '}{isDateIdeas ? '💝' : isBuzzwords ? '🚀' : '🤔'}
+        {title}{' '}{isDateIdeas ? '💝' : '🤔'}
       </h2>
       
       <div className="filters-container">
@@ -188,7 +192,7 @@ const Generator = ({ title, data, categories }) => {
               onClick={copyToClipboard} 
               className={`copy-button ${copied ? 'copied' : ''}`}
             >
-              {copied ? '✓ Copied!' : '📋 Copy to Clipboard'}
+              {copied ? '✓ Copied!' : '📋 Copy'}
             </button>
             <SpeechButton 
               text={currentItem.text}
@@ -197,7 +201,6 @@ const Generator = ({ title, data, categories }) => {
               selectedBudget={selectedBudget}
               selectedExperience={selectedExperience}
               type={isDateIdeas ? 'dates' : (isBuzzwords ? 'buzzwords' : 'excuses')}
-              icon={<MicIcon />}
             />
           </div>
         </div>

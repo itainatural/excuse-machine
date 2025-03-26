@@ -152,22 +152,10 @@ const SpeechButton = ({
     <button
       onClick={handleClick}
       disabled={isPlaying}
-      style={{
-        padding: '8px 16px',
-        borderRadius: '20px',
-        border: 'none',
-        backgroundColor: isPlaying ? '#ddd' : '#4CAF50',
-        color: 'white',
-        cursor: isPlaying ? 'default' : 'pointer',
-        transition: 'all 0.3s ease',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        fontSize: '16px'
-      }}
+      className={`voice-input-button ${isPlaying ? 'recording' : ''}`}
+      aria-label={isPlaying ? 'Speaking...' : 'Speak text'}
     >
-      {getButtonEmoji()}
-      {isPlaying ? 'Speaking...' : 'Speak'}
+      <MicrophoneIcon />
     </button>
   );
 };
