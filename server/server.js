@@ -12,19 +12,37 @@ app.disable('static');
 
 
 // Initialize OpenAI client
+if (!process.env.OPENAI_API_KEY) {
+  console.error('OPENAI_API_KEY is not set in environment variables');
+  process.exit(1);
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
+});
+
+// Log startup info
+console.log('Server starting with config:', {
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY ? 'set' : 'missing'
 });
 
 // Configure CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://excuse-machine.netlify.app', 'https://itainatural.github.io']
+    ? ['https://excuse-machine.netlify.app', 'https://itainatural.github.io', 'https://creative-hacks.netlify.app']
     : 'http://localhost:3000',
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true
 }));
 app.use(express.json());
+
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  next();
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -57,8 +75,10 @@ app.post('/api/generate-speech', async (req, res) => {
 
     res.json({ audio: base64Audio });
   } catch (error) {
-    console.error('Error generating speech:', error);
-    res.status(500).json({ error: 'Failed to generate speech' });
+    console.error('Error generating speech:', error.message);
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || 'Failed to generate speech';
+    res.status(statusCode).json({ error: errorMessage });
   }
 });
 
@@ -81,8 +101,10 @@ app.post('/api/generate-image', async (req, res) => {
 
     res.json({ url: response.data[0].url });
   } catch (error) {
-    console.error('Error generating image:', error);
-    res.status(500).json({ error: 'Failed to generate image' });
+    console.error('Error generating image:', error.message);
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || 'Failed to generate image';
+    res.status(statusCode).json({ error: errorMessage });
   }
 });
 

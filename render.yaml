@@ -12,3 +12,6 @@ services:
         value: 3001
       - key: OPENAI_API_KEY
         sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    plan: free

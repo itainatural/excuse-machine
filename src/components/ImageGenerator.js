@@ -132,7 +132,7 @@ const ImageGenerator = () => {
       const fullPrompt = `Create an image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging and fun!`;
       console.log('Generating image with prompt:', fullPrompt);
 
-      const response = await fetch('https://excuse-machine.onrender.com/api/generate-image', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

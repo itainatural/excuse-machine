@@ -98,7 +98,7 @@ function App() {
         >
           🍔
         </button>
-        <h1>Life Hacks</h1>
+        <h1>Creative Hacks</h1>
       </nav>
       <div className="app-layout">
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>

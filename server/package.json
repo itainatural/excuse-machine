@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npm install"
+    "build": "npm ci --production"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
