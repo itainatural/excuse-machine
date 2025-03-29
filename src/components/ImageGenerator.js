@@ -132,12 +132,15 @@ const ImageGenerator = () => {
       const fullPrompt = `Create an image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging and fun!`;
       console.log('Generating image with prompt:', fullPrompt);
 
+      console.log('Making API request to:', process.env.REACT_APP_API_URL);
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: fullPrompt })
+        body: JSON.stringify({ prompt: fullPrompt }),
+        mode: 'cors',
+        credentials: 'include'
       });
 
       const data = await response.json();
@@ -155,8 +158,17 @@ const ImageGenerator = () => {
       console.log('Image generated successfully:', data);
       setImageUrl(data.url);
     } catch (error) {
-      console.error('Image generation error:', error);
-      setError(error.message || 'Failed to generate image');
+      console.error('Image generation error:', {
+        message: error.message,
+        type: error.name,
+        apiUrl: process.env.REACT_APP_API_URL,
+        stack: error.stack
+      });
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        setError('Cannot connect to server. Please check your internet connection or try again later.');
+      } else {
+        setError(error.message || 'Failed to generate image');
+      }
     } finally {
       setIsLoading(false);
     }

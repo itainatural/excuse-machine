@@ -81,6 +81,7 @@ const SpeechButton = ({
       };
 
       const voiceSettings = getVoiceSettings();
+      console.log('Making speech API request to:', process.env.REACT_APP_API_URL);
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-speech`, {
         method: 'POST',
         headers: {
@@ -89,13 +90,19 @@ const SpeechButton = ({
         body: JSON.stringify({
           text,
           ...voiceSettings
-        })
+        }),
+        mode: 'cors',
+        credentials: 'include'
       });
 
       const data = await response.json();
       
       if (!response.ok) {
-        console.error('Server error:', data);
+        console.error('Speech server error:', {
+          status: response.status,
+          statusText: response.statusText,
+          data
+        });
         throw new Error(data.error || 'Failed to generate speech');
       }
 
