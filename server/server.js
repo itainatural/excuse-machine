@@ -73,14 +73,31 @@ app.use((req, res, next) => {
   next();
 });
 
+// Basic root endpoint
+app.get('/', (req, res) => {
+  res.json({ message: 'Excuse Machine API Server' });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({
+  const health = {
     status: 'ok',
     timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
     env: process.env.NODE_ENV,
-    openai: openai.apiKey ? 'configured' : 'missing'
-  });
+    node_version: process.version,
+    memory: process.memoryUsage(),
+    openai: openai.apiKey ? 'configured' : 'missing',
+    origin: req.headers.origin || 'unknown',
+    request: {
+      ip: req.ip,
+      method: req.method,
+      path: req.path,
+      headers: req.headers
+    }
+  };
+  
+  res.json(health);
 });
 
 // Generate speech endpoint
