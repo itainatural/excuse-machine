@@ -29,13 +29,18 @@ console.log('Server starting with config:', {
 });
 
 // Configure CORS
-// Configure CORS with more permissive settings
 const corsOptions = {
-  origin: '*', // Allow all origins temporarily for debugging
+  origin: process.env.CORS_ORIGIN || '*',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
-  credentials: false // Disable credentials since we're allowing all origins
+  credentials: false
 };
+
+// Log CORS configuration
+console.log('CORS config:', {
+  origin: corsOptions.origin,
+  methods: corsOptions.methods
+});
 
 app.use(cors(corsOptions));
 
