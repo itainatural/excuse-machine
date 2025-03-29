@@ -29,18 +29,65 @@ console.log('Server starting with config:', {
 });
 
 // Configure CORS
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? ['https://excuse-machine.netlify.app', 'https://itainatural.github.io', 'https://creative-hacks.netlify.app']
-    : 'http://localhost:3000',
+// Configure CORS with more permissive settings
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      'https://excuse-machine.netlify.app',
+      'https://itainatural.github.io',
+      'https://creative-hacks.netlify.app',
+      'https://creative-hacks-ai.netlify.app',
+      'http://localhost:3000'
+    ];
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      console.log('Origin not allowed by CORS:', origin);
+      callback(null, true); // Temporarily allow all origins
+    }
+  },
   methods: ['GET', 'POST', 'OPTIONS'],
-  credentials: true
-}));
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
-// Request logging middleware
+// Request logging middleware with detailed information
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  const startTime = Date.now();
+  const requestId = Math.random().toString(36).substring(7);
+
+  // Log request details
+  console.log(JSON.stringify({
+    timestamp: new Date().toISOString(),
+    requestId,
+    method: req.method,
+    url: req.url,
+    origin: req.headers.origin || 'unknown',
+    userAgent: req.headers['user-agent'],
+    body: req.method === 'POST' ? JSON.stringify(req.body) : undefined
+  }));
+
+  // Log response details
+  res.on('finish', () => {
+    const duration = Date.now() - startTime;
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      requestId,
+      duration: `${duration}ms`,
+      status: res.statusCode
+    }));
+  });
+
   next();
 });
 
@@ -106,6 +153,23 @@ app.post('/api/generate-image', async (req, res) => {
     const errorMessage = error.message || 'Failed to generate image';
     res.status(statusCode).json({ error: errorMessage });
   }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Server error:', {
+    timestamp: new Date().toISOString(),
+    error: err.message,
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    path: req.path,
+    method: req.method,
+    origin: req.headers.origin
+  });
+
+  res.status(err.status || 500).json({
+    error: process.env.NODE_ENV === 'production' ? 'Internal server error' : err.message,
+    path: req.path
+  });
 });
 
 // Catch-all route for non-API requests
