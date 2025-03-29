@@ -92,7 +92,7 @@ const SpeechButton = ({
           ...voiceSettings
         }),
         mode: 'cors',
-        credentials: 'include'
+        credentials: 'omit' // Don't send credentials since we're using * origin
       });
 
       const data = await response.json();

@@ -31,28 +31,10 @@ console.log('Server starting with config:', {
 // Configure CORS
 // Configure CORS with more permissive settings
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    const allowedOrigins = [
-      'https://excuse-machine.netlify.app',
-      'https://itainatural.github.io',
-      'https://creative-hacks.netlify.app',
-      'https://creative-hacks-ai.netlify.app',
-      'http://localhost:3000'
-    ];
-    
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      console.log('Origin not allowed by CORS:', origin);
-      callback(null, true); // Temporarily allow all origins
-    }
-  },
+  origin: '*', // Allow all origins temporarily for debugging
   methods: ['GET', 'POST', 'OPTIONS'],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+  credentials: false // Disable credentials since we're allowing all origins
 };
 
 app.use(cors(corsOptions));
