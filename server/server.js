@@ -39,9 +39,26 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Parse JSON bodies
+app.use(express.json());
+
+// Error handling middleware - must be after all routes
+app.use((err, req, res, next) => {
+  console.error('Error:', {
+    message: err.message,
+    stack: err.stack,
+    path: req.path,
+    method: req.method,
+    headers: req.headers
+  });
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'production' ? 'An error occurred' : err.message
+  });
+});
+
 // Handle preflight requests
 app.options('*', cors(corsOptions));
-app.use(express.json());
 
 // Request logging middleware with detailed information
 app.use((req, res, next) => {
