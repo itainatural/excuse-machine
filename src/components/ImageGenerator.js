@@ -140,11 +140,19 @@ const ImageGenerator = () => {
         body: JSON.stringify({ prompt: fullPrompt })
       });
 
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error('Failed to generate image');
+        console.error('Server error:', data);
+        throw new Error(data.error || 'Failed to generate image');
       }
 
-      const data = await response.json();
+      if (!data.url) {
+        console.error('Invalid response:', data);
+        throw new Error('No image URL in response');
+      }
+
+      console.log('Image generated successfully:', data);
       setImageUrl(data.url);
     } catch (error) {
       console.error('Image generation error:', error);

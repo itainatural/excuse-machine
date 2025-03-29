@@ -92,11 +92,20 @@ const SpeechButton = ({
         })
       });
 
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error('Failed to generate speech');
+        console.error('Server error:', data);
+        throw new Error(data.error || 'Failed to generate speech');
       }
 
-      const { audio: audioData } = await response.json();
+      if (!data.audio) {
+        console.error('Invalid response:', data);
+        throw new Error('No audio data in response');
+      }
+
+      console.log('Speech generated successfully');
+      const { audio: audioData } = data;
       
       // Convert base64 to blob
       const binaryString = window.atob(audioData);

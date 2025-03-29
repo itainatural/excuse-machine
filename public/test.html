@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Test Page</h1>
+
+    <div class="test-section">
+        <h2>Health Check</h2>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="healthResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Generate Image</h2>
+        <input type="text" id="imagePrompt" value="A funny cartoon robot" style="width: 300px;">
+        <button onclick="testGenerateImage()">Generate Image</button>
+        <div id="imageResult" class="result">
+            <img id="generatedImage" style="max-width: 100%; display: none;">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Generate Speech</h2>
+        <input type="text" id="speechText" value="Hello world" style="width: 300px;">
+        <button onclick="testGenerateSpeech()">Generate Speech</button>
+        <div id="speechResult" class="result">
+            <audio id="generatedSpeech" controls style="display: none;"></audio>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Generate Text</h2>
+        <input type="text" id="textPrompt" value="Give me a funny excuse" style="width: 300px;">
+        <button onclick="testGenerateText()">Generate Text</button>
+        <div id="textResult" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://excuse-machine-api.onrender.com';
+
+        async function testHealth() {
+            try {
+                const response = await fetch(`${API_URL}/api/health`);
+                const data = await response.json();
+                document.getElementById('healthResult').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('healthResult').textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function testGenerateImage() {
+            try {
+                const prompt = document.getElementById('imagePrompt').value;
+                const response = await fetch(`${API_URL}/api/generate-image`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+                const data = await response.json();
+                if (data.url) {
+                    const img = document.getElementById('generatedImage');
+                    img.src = data.url;
+                    img.style.display = 'block';
+                }
+                document.getElementById('imageResult').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('imageResult').textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function testGenerateSpeech() {
+            try {
+                const text = document.getElementById('speechText').value;
+                const response = await fetch(`${API_URL}/api/generate-speech`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, voice: 'alloy' })
+                });
+                const data = await response.json();
+                if (data.audio) {
+                    const audio = document.getElementById('generatedSpeech');
+                    audio.src = `data:audio/mp3;base64,${data.audio}`;
+                    audio.style.display = 'block';
+                }
+                document.getElementById('speechResult').textContent = 'Speech generated successfully';
+            } catch (error) {
+                document.getElementById('speechResult').textContent = `Error: ${error.message}`;
+            }
+        }
+
+        async function testGenerateText() {
+            try {
+                const prompt = document.getElementById('textPrompt').value;
+                const response = await fetch(`${API_URL}/api/generate-text`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+                const data = await response.json();
+                document.getElementById('textResult').textContent = data.text || JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('textResult').textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
