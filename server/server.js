@@ -95,6 +95,40 @@ app.use((req, res, next) => {
   next();
 });
 
+// Generate excuse endpoint
+app.post('/api/generate-excuse', async (req, res) => {
+  try {
+    const { situation, tone, length } = req.body;
+    
+    if (!situation) {
+      return res.status(400).json({ error: 'Situation is required' });
+    }
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4-turbo-preview",
+      messages: [
+        {
+          role: "system",
+          content: "You are a creative excuse generator. Generate a believable and contextually appropriate excuse."
+        },
+        {
+          role: "user",
+          content: `Generate an excuse for this situation: ${situation}\nTone: ${tone || 'professional'}\nLength: ${length || 'medium'}`
+        }
+      ],
+      temperature: 0.8,
+      max_tokens: 300
+    });
+
+    res.json({ excuse: completion.choices[0].message.content });
+  } catch (error) {
+    console.error('Error generating excuse:', error.message);
+    const statusCode = error.status || 500;
+    const errorMessage = error.message || 'Failed to generate excuse';
+    res.status(statusCode).json({ error: errorMessage });
+  }
+});
+
 // Basic root endpoint
 app.get(['/', '/api'], (req, res) => {
   const info = {
