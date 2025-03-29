@@ -2,9 +2,8 @@ services:
   - type: web
     name: excuse-machine-api
     env: node
-    region: ohio
     rootDir: server
-    buildCommand: npm install --production
+    buildCommand: npm install
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
@@ -12,6 +11,4 @@ services:
       - key: OPENAI_API_KEY
         sync: false
     healthCheckPath: /
-    healthCheckTimeout: 120
     autoDeploy: true
-    plan: free
