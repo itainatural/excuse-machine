@@ -2,13 +2,47 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const OpenAI = require('openai');
+const { createClient } = require('redis');
+const crypto = require('crypto');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 const app = express();
+
+// Redis client setup
+const redisClient = createClient({
+  url: process.env.REDIS_URL || 'redis://localhost:6379'
+});
+
+redisClient.on('error', (err) => console.error('Redis Client Error:', err));
+
+(async () => {
+  await redisClient.connect();
+})();
 const port = process.env.PORT || 3000;
 
-// Disable serving static files
+// Security headers
+app.use(helmet());
+
+// Disable serving static files and remove X-Powered-By header
 app.set('x-powered-by', false);
 app.disable('static');
+
+// Enable gzip compression
+app.use(compression());
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+// Apply rate limiting to all routes
+app.use(limiter);
 
 
 // Initialize OpenAI client
@@ -67,36 +101,101 @@ app.options('*', cors(corsOptions));
 
 // Request logging middleware with detailed information
 app.use((req, res, next) => {
+  // Skip logging for health checks
+  if (req.path === '/api/health') {
+    return next();
+  }
+
   const startTime = Date.now();
   const requestId = Math.random().toString(36).substring(7);
 
-  // Log request details
-  console.log(JSON.stringify({
-    timestamp: new Date().toISOString(),
-    requestId,
-    method: req.method,
-    url: req.url,
-    origin: req.headers.origin || 'unknown',
-    userAgent: req.headers['user-agent'],
-    body: req.method === 'POST' ? JSON.stringify(req.body) : undefined
-  }));
+  // Log request details (only in non-production)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      requestId,
+      method: req.method,
+      url: req.url,
+      origin: req.headers.origin || 'unknown',
+      userAgent: req.headers['user-agent']
+    }));
+  }
 
   // Log response details
   res.on('finish', () => {
     const duration = Date.now() - startTime;
-    console.log(JSON.stringify({
-      timestamp: new Date().toISOString(),
-      requestId,
-      duration: `${duration}ms`,
-      status: res.statusCode
-    }));
+    // Only log slow responses and errors in production
+    if (process.env.NODE_ENV === 'production') {
+      if (duration > 1000 || res.statusCode >= 400) {
+        console.log(JSON.stringify({
+          timestamp: new Date().toISOString(),
+          requestId,
+          duration: `${duration}ms`,
+          status: res.statusCode,
+          slow: duration > 1000
+        }));
+      }
+    } else {
+      console.log(JSON.stringify({
+        timestamp: new Date().toISOString(),
+        requestId,
+        duration: `${duration}ms`,
+        status: res.statusCode
+      }));
+    }
   });
 
   next();
 });
 
 // Generate excuse endpoint
-app.post('/api/generate-excuse', async (req, res) => {
+// Cache middleware
+const cacheExcuse = async (req, res, next) => {
+  if (process.env.NODE_ENV !== 'production') {
+    return next();
+  }
+
+  const cacheKey = crypto
+    .createHash('md5')
+    .update(JSON.stringify({ body: req.body, path: req.path }))
+    .digest('hex');
+
+  try {
+    const cachedResponse = await redisClient.get(cacheKey);
+    if (cachedResponse) {
+      console.log('Cache hit for:', cacheKey);
+      res.set('X-Cache', 'HIT');
+      return res.json(JSON.parse(cachedResponse));
+    }
+    req.cacheKey = cacheKey;
+    next();
+  } catch (error) {
+    console.error('Cache error:', error);
+    next();
+  }
+};
+
+// Cache response middleware
+const cacheResponse = (duration = 3600) => async (req, res, next) => {
+  const originalJson = res.json;
+  res.json = async (body) => {
+    if (req.cacheKey && process.env.NODE_ENV === 'production') {
+      try {
+        await redisClient.set(req.cacheKey, JSON.stringify(body), {
+          EX: duration,
+        });
+        console.log('Cached response for:', req.cacheKey);
+      } catch (error) {
+        console.error('Error caching response:', error);
+      }
+    }
+    res.set('Cache-Control', `public, max-age=${duration}`);
+    return originalJson.call(res, body);
+  };
+  next();
+};
+
+app.post('/api/generate-excuse', cacheExcuse, cacheResponse(3600), async (req, res) => {
   try {
     const { situation, tone, length } = req.body;
     
@@ -198,18 +297,28 @@ app.post('/api/generate-speech', async (req, res) => {
 // Generate image endpoint
 app.post('/api/generate-image', async (req, res) => {
   try {
-    const { prompt } = req.body;
+    const { prompt, complexity = 0.6 } = req.body;
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required' });
     }
 
+    // Adjust prompt based on complexity
+    const qualityLevel = complexity >= 0.8 ? "hd" : "standard";
+    const styleLevel = complexity >= 0.7 ? "vivid" : "natural";
+    
+    // Add detail level to prompt based on complexity
+    const detailPrompt = complexity >= 0.9 ? ", extremely detailed, intricate details" :
+                        complexity >= 0.7 ? ", detailed" :
+                        complexity >= 0.5 ? ", moderate detail" :
+                        ", simple and clean";
+    
     const response = await openai.images.generate({
       model: "dall-e-3",
-      prompt: prompt,
+      prompt: `${prompt}${detailPrompt}`,
       n: 1,
       size: "1024x1024",
-      quality: "standard",
-      style: "vivid"
+      quality: qualityLevel,
+      style: styleLevel
     });
 
     res.json({ url: response.data[0].url });

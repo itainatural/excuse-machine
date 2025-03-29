@@ -1,15 +1,29 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, Suspense, lazy } from 'react';
+import { useSpring, animated } from '@react-spring/web';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import './Generator.css';
 import SpeechButton from './SpeechButton';
 
-const SparkleIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.5 10.5L21 12l-1.5-1.5L18 12l1.5-1.5zM12 4.5L13.5 6 12 4.5 10.5 6 12 4.5zM4.5 10.5L6 12l-1.5-1.5L3 12l1.5-1.5z"/>
-  </svg>
+// Lazy load components
+const SparkleIcon = lazy(() => import('./SparkleIcon'));
+
+// Loading fallback
+const LoadingSparkle = () => (
+  <div className="animate-pulse w-6 h-6 bg-gray-200 rounded-full"></div>
 );
 
 const Generator = ({ title, data, categories }) => {
+  // Animation for content fade-in
+  const fadeIn = useSpring({
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    to: { opacity: 1, transform: 'translateY(0)' },
+    config: { tension: 280, friction: 20 }
+  });
+
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [selectedBudget, setSelectedBudget] = useState('any');
   const [selectedSeriousness, setSelectedSeriousness] = useState('any');
   const [selectedExperience, setSelectedExperience] = useState('any');
@@ -42,8 +56,23 @@ const Generator = ({ title, data, categories }) => {
   }, [data]);
 
   useEffect(() => {
-    console.log('Generator state:', { title, data, categories, selectedCategory });
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Generator state:', { title, data, categories, selectedCategory });
+    }
   }, [title, data, categories, selectedCategory]);
+
+  // Memoize the filter functions
+  const filterByBudget = useCallback((items, budget) => {
+    return budget === 'any' ? items : items.filter(item => item.budget === budget);
+  }, []);
+
+  const filterBySeriousness = useCallback((items, seriousness) => {
+    return seriousness === 'any' ? items : items.filter(item => item.seriousness === seriousness);
+  }, []);
+
+  const filterByExperience = useCallback((items, experience) => {
+    return experience === 'any' ? items : items.filter(item => item.experience === experience);
+  }, []);
 
   const generateItem = useCallback(() => {
     if (!data || !selectedCategory || !data[selectedCategory]) return;
@@ -56,16 +85,16 @@ const Generator = ({ title, data, categories }) => {
 
     let filteredItems = [...categoryItems];
 
-    if (isDateIdeas && selectedBudget !== 'any') {
-      filteredItems = filteredItems.filter(item => item.budget === selectedBudget);
+    if (isDateIdeas) {
+      filteredItems = filterByBudget(filteredItems, selectedBudget);
     }
 
-    if (!isDateIdeas && !isBuzzwords && selectedSeriousness !== 'any') {
-      filteredItems = filteredItems.filter(item => item.seriousness === selectedSeriousness);
+    if (!isDateIdeas && !isBuzzwords) {
+      filteredItems = filterBySeriousness(filteredItems, selectedSeriousness);
     }
     
-    if (isBuzzwords && selectedExperience !== 'any') {
-      filteredItems = filteredItems.filter(item => item.experience === selectedExperience);
+    if (isBuzzwords) {
+      filteredItems = filterByExperience(filteredItems, selectedExperience);
     }
     
     if (filteredItems.length === 0) {
@@ -98,7 +127,12 @@ const Generator = ({ title, data, categories }) => {
         textArea.value = currentItem.text;
         document.body.appendChild(textArea);
         textArea.select();
-        try {
+        setIsLoading(true);
+setError(null);
+
+try {
+          setIsLoading(true);
+          setError(null);
           document.execCommand('copy');
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
@@ -114,7 +148,17 @@ const Generator = ({ title, data, categories }) => {
   }
 
   return (
-    <div className="generator">
+    <animated.div style={fadeIn} className="generator">
+      {error && (
+        <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+          {error}
+        </div>
+      )}
+      {isLoading && (
+        <div className="mt-4">
+          <Skeleton count={3} className="mb-2" />
+        </div>
+      )}
       <h2>
         {title}{' '}{isDateIdeas ? '💝' : '🤔'}
       </h2>
@@ -205,8 +249,16 @@ const Generator = ({ title, data, categories }) => {
           </div>
         </div>
       )}
-    </div>
+    </animated.div>
   );
 };
 
-export default Generator;
+const WrappedGenerator = React.memo(Generator);
+
+export default function App({ title, data, categories }) {
+  return (
+    <Suspense fallback={<div className="animate-pulse">Loading...</div>}>
+      <WrappedGenerator title={title} data={data} categories={categories} />
+    </Suspense>
+  );
+}

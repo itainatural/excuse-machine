@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Test Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .endpoint {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .endpoint h3 {
+            margin: 0 0 10px 0;
+            color: #444;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .error {
+            color: #dc3545;
+        }
+        .success {
+            color: #28a745;
+        }
+        .status {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #connectionStatus {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Test Dashboard</h1>
+    
+    <div id="connectionStatus"></div>
+
+    <div class="test-section">
+        <h2>Health Check</h2>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="healthResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Text Generation</h2>
+        <input type="text" id="textPrompt" value="Give me a funny excuse" style="width: 300px; padding: 5px;">
+        <button onclick="testGenerateText()">Generate Text</button>
+        <div id="textResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Image Generation</h2>
+        <input type="text" id="imagePrompt" value="A funny cartoon robot" style="width: 300px; padding: 5px;">
+        <button onclick="testGenerateImage()">Generate Image</button>
+        <div id="imageResult" class="result">
+            <img id="generatedImage" style="max-width: 100%; display: none;">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Speech Generation</h2>
+        <input type="text" id="speechText" value="Hello world" style="width: 300px; padding: 5px;">
+        <button onclick="testGenerateSpeech()">Generate Speech</button>
+        <div id="speechResult" class="result">
+            <audio id="generatedSpeech" controls style="display: none;"></audio>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = window.location.hostname === 'localhost' 
+            ? 'http://localhost:10000'
+            : 'https://excuse-machine-api.onrender.com';
+        
+        // Check connection status
+        async function checkConnection() {
+            const status = document.getElementById('connectionStatus');
+            try {
+                const response = await fetch(`${API_URL}/api/health`);
+                const data = await response.json();
+                status.className = 'connected';
+                status.textContent = `✅ Connected to API Server (${data.env || 'unknown'} environment)`;
+                console.log('Connection details:', data);
+            } catch (error) {
+                status.className = 'disconnected';
+                status.textContent = `❌ Cannot connect to API Server: ${error.message}`;
+                console.error('Connection error:', {
+                    message: error.message,
+                    type: error.name,
+                    apiUrl: API_URL,
+                    stack: error.stack
+                });
+            }
+        }
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('healthResult');
+            try {
+                const startTime = performance.now();
+                const response = await fetch(`${API_URL}/api/health`);
+                const data = await response.json();
+                const duration = (performance.now() - startTime).toFixed(2);
+                
+                resultDiv.innerHTML = `
+                    <div class="status ${response.ok ? 'success' : 'error'}">
+                        Status: ${response.status} ${response.statusText} (${duration}ms)
+                    </div>
+                    <div>${JSON.stringify(data, null, 2)}</div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                console.error('Health check error:', error);
+            }
+        }
+
+        async function testGenerateText() {
+            const resultDiv = document.getElementById('textResult');
+            try {
+                const prompt = document.getElementById('textPrompt').value;
+                const startTime = performance.now();
+                const response = await fetch(`${API_URL}/api/generate-text`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt }),
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                const data = await response.json();
+                const duration = (performance.now() - startTime).toFixed(2);
+                
+                resultDiv.innerHTML = `
+                    <div class="status ${response.ok ? 'success' : 'error'}">
+                        Status: ${response.status} ${response.statusText} (${duration}ms)
+                    </div>
+                    <div>${JSON.stringify(data, null, 2)}</div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                console.error('Text generation error:', error);
+            }
+        }
+
+        async function testGenerateImage() {
+            const resultDiv = document.getElementById('imageResult');
+            try {
+                const prompt = document.getElementById('imagePrompt').value;
+                const startTime = performance.now();
+                const response = await fetch(`${API_URL}/api/generate-image`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt }),
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                const data = await response.json();
+                const duration = (performance.now() - startTime).toFixed(2);
+                
+                if (data.url) {
+                    const img = document.getElementById('generatedImage');
+                    img.src = data.url;
+                    img.style.display = 'block';
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="status ${response.ok ? 'success' : 'error'}">
+                        Status: ${response.status} ${response.statusText} (${duration}ms)
+                    </div>
+                    <div>${JSON.stringify(data, null, 2)}</div>
+                    ${data.url ? `<img src="${data.url}" style="max-width: 100%; margin-top: 10px;">` : ''}
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                console.error('Image generation error:', error);
+            }
+        }
+
+        async function testGenerateSpeech() {
+            const resultDiv = document.getElementById('speechResult');
+            try {
+                const text = document.getElementById('speechText').value;
+                const startTime = performance.now();
+                const response = await fetch(`${API_URL}/api/generate-speech`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        text,
+                        voice: 'alloy',
+                        model: 'tts-1'
+                    }),
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                const data = await response.json();
+                const duration = (performance.now() - startTime).toFixed(2);
+                
+                if (data.audio) {
+                    const audio = document.getElementById('generatedSpeech');
+                    audio.src = `data:audio/mp3;base64,${data.audio}`;
+                    audio.style.display = 'block';
+                }
+                
+                resultDiv.innerHTML = `
+                    <div class="status ${response.ok ? 'success' : 'error'}">
+                        Status: ${response.status} ${response.statusText} (${duration}ms)
+                    </div>
+                    <div>Audio ${data.audio ? 'generated' : 'failed'}</div>
+                    ${data.error ? `<div class="error">${data.error}</div>` : ''}
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+                console.error('Speech generation error:', error);
+            }
+        }
+
+        // Check connection on load
+        checkConnection();
+    </script>
+</body>
+</html>

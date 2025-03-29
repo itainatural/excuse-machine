@@ -1,10 +1,16 @@
 [build]
   command = "rm -rf node_modules && npm ci && GENERATE_SOURCEMAP=false CI=false npm run build"
   publish = "build"
+  functions = "netlify/functions"
   ignore = "false"
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
