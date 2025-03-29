@@ -4,14 +4,14 @@ services:
     env: node
     region: ohio
     rootDir: server
-    buildCommand: npm ci
-    startCommand: npm start
+    buildCommand: npm install --production
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
       - key: OPENAI_API_KEY
         sync: false
-    healthCheckPath: /api/health
-    healthCheckTimeout: 180
+    healthCheckPath: /
+    healthCheckTimeout: 120
     autoDeploy: true
     plan: free
