@@ -75,29 +75,23 @@ app.use((req, res, next) => {
 
 // Basic root endpoint
 app.get('/', (req, res) => {
-  res.json({ message: 'Excuse Machine API Server' });
+  res.json({
+    message: 'Excuse Machine API Server',
+    version: process.env.npm_package_version,
+    env: process.env.NODE_ENV
+  });
 });
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  const health = {
+  res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     env: process.env.NODE_ENV,
     node_version: process.version,
-    memory: process.memoryUsage(),
-    openai: openai.apiKey ? 'configured' : 'missing',
-    origin: req.headers.origin || 'unknown',
-    request: {
-      ip: req.ip,
-      method: req.method,
-      path: req.path,
-      headers: req.headers
-    }
-  };
-  
-  res.json(health);
+    openai: openai.apiKey ? 'configured' : 'missing'
+  });
 });
 
 // Generate speech endpoint
@@ -171,9 +165,26 @@ app.use((err, req, res, next) => {
   });
 });
 
+// API documentation endpoint
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Excuse Machine API Server',
+    endpoints: [
+      { path: '/', method: 'GET', description: 'Root endpoint' },
+      { path: '/api/health', method: 'GET', description: 'Health check endpoint' },
+      { path: '/api/generate-text', method: 'POST', description: 'Generate excuse text' },
+      { path: '/api/generate-image', method: 'POST', description: 'Generate excuse image' },
+      { path: '/api/generate-speech', method: 'POST', description: 'Generate speech from text' }
+    ]
+  });
+});
+
 // Catch-all route for non-API requests
 app.use('*', (req, res) => {
-  res.status(404).json({ error: 'Not found. This is an API server.' });
+  res.status(404).json({
+    error: 'Not found',
+    message: 'This is an API server. Available endpoints can be found at /api'
+  });
 });
 
 const server = app.listen(port, '0.0.0.0', () => {
