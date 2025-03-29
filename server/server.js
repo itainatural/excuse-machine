@@ -96,12 +96,29 @@ app.use((req, res, next) => {
 });
 
 // Basic root endpoint
-app.get('/', (req, res) => {
-  res.json({
+app.get(['/', '/api'], (req, res) => {
+  const info = {
     message: 'Excuse Machine API Server',
-    version: process.env.npm_package_version,
-    env: process.env.NODE_ENV
+    version: process.env.npm_package_version || '1.0.0',
+    env: process.env.NODE_ENV,
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
+    endpoints: [
+      { path: '/', method: 'GET', description: 'Root endpoint' },
+      { path: '/api/health', method: 'GET', description: 'Health check endpoint' },
+      { path: '/api/generate-text', method: 'POST', description: 'Generate excuse text' },
+      { path: '/api/generate-image', method: 'POST', description: 'Generate excuse image' },
+      { path: '/api/generate-speech', method: 'POST', description: 'Generate speech from text' }
+    ]
+  };
+  
+  console.log('Root endpoint accessed:', {
+    path: req.path,
+    timestamp: new Date().toISOString(),
+    headers: req.headers
   });
+  
+  res.json(info);
 });
 
 // Health check endpoint
@@ -187,17 +204,15 @@ app.use((err, req, res, next) => {
   });
 });
 
-// API documentation endpoint
-app.get('/api', (req, res) => {
+// Health check endpoint
+app.get('/api/health', (req, res) => {
   res.json({
-    message: 'Excuse Machine API Server',
-    endpoints: [
-      { path: '/', method: 'GET', description: 'Root endpoint' },
-      { path: '/api/health', method: 'GET', description: 'Health check endpoint' },
-      { path: '/api/generate-text', method: 'POST', description: 'Generate excuse text' },
-      { path: '/api/generate-image', method: 'POST', description: 'Generate excuse image' },
-      { path: '/api/generate-speech', method: 'POST', description: 'Generate speech from text' }
-    ]
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    env: process.env.NODE_ENV,
+    node_version: process.version,
+    openai: openai.apiKey ? 'configured' : 'missing'
   });
 });
 

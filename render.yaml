@@ -14,5 +14,5 @@ services:
         sync: false
       - key: CORS_ORIGIN
         value: https://excuse-machine.netlify.app
-    healthCheckPath: /
+    healthCheckPath: /api/health
     autoDeploy: true
