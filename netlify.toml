@@ -1,17 +1,21 @@
 [build]
-  base = "/"
-  command = "CI=false npm ci && npm run build"
+  command = "npm install && CI=false npm run build"
   publish = "build"
-  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "16.14.0"
-  NPM_VERSION = "8.19.4"
-  NETLIFY_USE_YARN = "false"
-  NODE_ENV = "production"
   CI = "false"
-  GENERATE_SOURCEMAP = "false"
-  REACT_APP_API_URL = "https://excuse-machine.onrender.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://excuse-machine.onrender.com/api/:splat"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"
