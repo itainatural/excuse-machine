@@ -1,11 +1,14 @@
 [build]
-  command = "npm install && npm run build"
+  command = "npm cache clean --force && rm -rf node_modules && npm install --no-audit --no-fund && npm run build"
   publish = "build"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "16.14.0"
   CI = "false"
+  NODE_ENV = "production"
+  NPM_FLAGS = "--no-audit --no-fund"
+  NETLIFY_USE_YARN = "false"
 
 [[redirects]]
   from = "/api/*"
