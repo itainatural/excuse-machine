@@ -2,6 +2,7 @@ services:
   - type: web
     name: excuse-machine-api
     env: node
+    region: ohio
     rootDir: server
     buildCommand: npm ci
     startCommand: npm start
@@ -10,10 +11,7 @@ services:
         value: production
       - key: OPENAI_API_KEY
         sync: false
-    healthCheckPath: /
-    healthCheckTimeout: 300
+    healthCheckPath: /api/health
+    healthCheckTimeout: 180
     autoDeploy: true
     plan: free
-    scaling:
-      minInstances: 1
-      maxInstances: 1
