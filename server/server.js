@@ -4,7 +4,7 @@ const cors = require('cors');
 const OpenAI = require('openai');
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 10000;
 
 // Disable serving static files
 app.set('x-powered-by', false);
@@ -176,6 +176,9 @@ app.use('*', (req, res) => {
   res.status(404).json({ error: 'Not found. This is an API server.' });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+const server = app.listen(port, '0.0.0.0', () => {
+  const address = server.address();
+  console.log(`Server is running on ${address.address}:${address.port}`);
+  console.log('Environment:', process.env.NODE_ENV);
+  console.log('OpenAI API Key:', process.env.OPENAI_API_KEY ? 'configured' : 'missing');
 });
