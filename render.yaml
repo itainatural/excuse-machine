@@ -3,7 +3,7 @@ services:
     name: excuse-machine-api
     env: node
     rootDir: server
-    buildCommand: npm run build
+    buildCommand: npm ci
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -12,6 +12,10 @@ services:
         value: 3001
       - key: OPENAI_API_KEY
         sync: false
-    healthCheckPath: /api/health
+    healthCheckPath: /
+    healthCheckTimeout: 300
     autoDeploy: true
     plan: free
+    scaling:
+      minInstances: 1
+      maxInstances: 1
