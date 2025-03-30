@@ -23,6 +23,30 @@
       "meaning": "Building systems where growth feeds more growth",
       "emoji": "♻️",
       "experience": "guru"
+    },
+    {
+      "text": "Network Effect Amplification",
+      "meaning": "Making your product better as more people use it",
+      "emoji": "🌐",
+      "experience": "guru"
+    },
+    {
+      "text": "K-Factor Engineering",
+      "meaning": "Calculating how fast your app spreads like a virus",
+      "emoji": "📈",
+      "experience": "senior"
+    },
+    {
+      "text": "Organic Discovery Pipeline",
+      "meaning": "Getting found without paying for ads",
+      "emoji": "🔍",
+      "experience": "mid"
+    },
+    {
+      "text": "User Magnet Framework",
+      "meaning": "Making people want to join without knowing why",
+      "emoji": "🧲",
+      "experience": "junior"
     }
   ],
   "conversion": [
@@ -49,6 +73,30 @@
       "meaning": "Figuring out why users do what they do",
       "emoji": "📐",
       "experience": "guru"
+    },
+    {
+      "text": "FOMO Trigger System",
+      "meaning": "Making people panic about missing out",
+      "emoji": "😰",
+      "experience": "senior"
+    },
+    {
+      "text": "Decision Acceleration Framework",
+      "meaning": "Pushing users to act before they think too much",
+      "emoji": "⚡",
+      "experience": "guru"
+    },
+    {
+      "text": "Social Proof Amplifier",
+      "meaning": "Showing off how many people already fell for it",
+      "emoji": "👥",
+      "experience": "mid"
+    },
+    {
+      "text": "Trust Signal Matrix",
+      "meaning": "Adding badges until people believe in you",
+      "emoji": "🏅",
+      "experience": "junior"
     }
   ],
   "retention": [
@@ -74,6 +122,30 @@
       "text": "Habit Formation Matrix",
       "meaning": "Making your product as addictive as social media",
       "emoji": "🔄",
+      "experience": "junior"
+    },
+    {
+      "text": "User Success Velocity",
+      "meaning": "Helping users win before they quit",
+      "emoji": "🎯",
+      "experience": "senior"
+    },
+    {
+      "text": "Loyalty Loop Engineering",
+      "meaning": "Building a product users can't imagine living without",
+      "emoji": "❤️",
+      "experience": "guru"
+    },
+    {
+      "text": "Reactivation Trigger System",
+      "meaning": "Annoying dormant users until they come back",
+      "emoji": "🔔",
+      "experience": "mid"
+    },
+    {
+      "text": "Value Discovery Pipeline",
+      "meaning": "Showing users features they didn't know they needed",
+      "emoji": "💎",
       "experience": "junior"
     }
   ],
@@ -101,6 +173,30 @@
       "meaning": "Stalking users through your product legally",
       "emoji": "📑",
       "experience": "junior"
+    },
+    {
+      "text": "Predictive Churn Modeling",
+      "meaning": "Crystal ball gazing at who's about to leave",
+      "emoji": "🔮",
+      "experience": "guru"
+    },
+    {
+      "text": "Behavioral Segmentation Engine",
+      "meaning": "Putting users in boxes based on what they do",
+      "emoji": "📦",
+      "experience": "senior"
+    },
+    {
+      "text": "ROI Intelligence System",
+      "meaning": "Proving your work actually makes money",
+      "emoji": "💵",
+      "experience": "mid"
+    },
+    {
+      "text": "Engagement Score Matrix",
+      "meaning": "Rating how obsessed users are with your product",
+      "emoji": "📊",
+      "experience": "junior"
     }
   ],
   "channels": [
@@ -126,6 +222,30 @@
       "text": "Cross-Platform Engagement",
       "meaning": "Chasing users across the internet",
       "emoji": "📲",
+      "experience": "junior"
+    },
+    {
+      "text": "Virality Distribution Matrix",
+      "meaning": "Spreading content like a social media pandemic",
+      "emoji": "🦠",
+      "experience": "guru"
+    },
+    {
+      "text": "Content Flywheel System",
+      "meaning": "Creating content that makes more content",
+      "emoji": "🎡",
+      "experience": "senior"
+    },
+    {
+      "text": "Community Amplification Loop",
+      "meaning": "Getting your users to be your marketing team",
+      "emoji": "📢",
+      "experience": "mid"
+    },
+    {
+      "text": "Growth Channel Discovery",
+      "meaning": "Finding new places to annoy potential users",
+      "emoji": "🔭",
       "experience": "junior"
     }
   ]
