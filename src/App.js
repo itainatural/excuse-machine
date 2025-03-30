@@ -36,11 +36,11 @@ function App() {
   };
 
   const buzzwordCategories = {
-    strategy: 'Strategy 🎯',
-    tech: 'Tech 🤖',
-    marketing: 'Marketing 📈',
-    productivity: 'Productivity ⚡',
-    innovation: 'Innovation 🚀'
+    acquisition: 'User Acquisition 🎯',
+    conversion: 'Conversion Rate 📈',
+    retention: 'User Retention 🔒',
+    analytics: 'Analytics & Data 📏',
+    channels: 'Marketing Channels 📲'
   };
 
   const generators = [

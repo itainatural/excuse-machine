@@ -1,132 +1,132 @@
 {
-  "strategy": [
+  "acquisition": [
     {
-      "text": "Agile Innovation Sprint",
-      "meaning": "Fast-paced development cycle that probably isn't actually agile",
-      "emoji": "🏃",
+      "text": "CAC Optimization Protocol",
+      "meaning": "Finding ways to spend less money getting new users",
+      "emoji": "💰",
       "experience": "mid"
     },
     {
-      "text": "Digital Transformation Journey",
-      "meaning": "Upgrading from Excel 2003 to Excel 2019",
+      "text": "Viral Coefficient Maximization",
+      "meaning": "Getting users to do your marketing for free",
       "emoji": "🚀",
       "experience": "senior"
     },
     {
-      "text": "Synergy Optimization",
-      "meaning": "Getting teams to actually talk to each other",
-      "emoji": "🤝",
-      "experience": "guru"
+      "text": "Top of Funnel Expansion",
+      "meaning": "Casting a wider net and hoping something sticks",
+      "emoji": "🎉",
+      "experience": "junior"
     },
     {
-      "text": "Growth Mindset Culture",
-      "meaning": "Encouraging employees to learn from failures without actually failing",
-      "emoji": "🌱",
-      "experience": "junior"
+      "text": "Growth Loop Architecture",
+      "meaning": "Building systems where growth feeds more growth",
+      "emoji": "♻️",
+      "experience": "guru"
     }
   ],
-  "tech": [
+  "conversion": [
     {
-      "text": "AI-Powered Solutions",
-      "meaning": "If-else statements with better marketing",
-      "emoji": "🤖",
-      "experience": "guru"
-    },
-    {
-      "text": "Blockchain Integration",
-      "meaning": "Adding cryptocurrency to things that don't need it",
-      "emoji": "⛓️",
-      "experience": "senior"
-    },
-    {
-      "text": "Cloud-Native Architecture",
-      "meaning": "Running everything on someone else's computer",
-      "emoji": "☁️",
+      "text": "Micro-Conversion Cascade",
+      "meaning": "Breaking down big actions into tiny baby steps",
+      "emoji": "📉",
       "experience": "mid"
     },
     {
-      "text": "Edge Computing Matrix",
-      "meaning": "Putting mini servers closer to users",
-      "emoji": "📡",
+      "text": "Friction Reduction Matrix",
+      "meaning": "Making it really, really easy to give you money",
+      "emoji": "⚙️",
       "experience": "senior"
+    },
+    {
+      "text": "Value Prop Optimization",
+      "meaning": "Testing different ways to say 'you need this'",
+      "emoji": "💡",
+      "experience": "junior"
+    },
+    {
+      "text": "Behavioral Flow Mapping",
+      "meaning": "Figuring out why users do what they do",
+      "emoji": "📐",
+      "experience": "guru"
     }
   ],
-  "marketing": [
+  "retention": [
     {
-      "text": "Content Velocity Optimization",
-      "meaning": "Posting more stuff faster",
+      "text": "Stickiness Factor Enhancement",
+      "meaning": "Making your product harder to quit than Netflix",
+      "emoji": "🍺",
+      "experience": "senior"
+    },
+    {
+      "text": "Churn Prevention Protocol",
+      "meaning": "Desperately trying to keep users from leaving",
+      "emoji": "🧱",
+      "experience": "mid"
+    },
+    {
+      "text": "Engagement Loop Design",
+      "meaning": "Creating addictive product features",
+      "emoji": "🎮",
+      "experience": "guru"
+    },
+    {
+      "text": "Habit Formation Matrix",
+      "meaning": "Making your product as addictive as social media",
+      "emoji": "🔄",
+      "experience": "junior"
+    }
+  ],
+  "analytics": [
+    {
+      "text": "North Star Metric Framework",
+      "meaning": "Picking one number to rule them all",
+      "emoji": "⭐",
+      "experience": "senior"
+    },
+    {
+      "text": "Cohort Analysis Deep Dive",
+      "meaning": "Grouping users to figure out who's worth keeping",
       "emoji": "📈",
-      "experience": "mid"
-    },
-    {
-      "text": "Multi-Channel Engagement",
-      "meaning": "Annoying people on every possible platform",
-      "emoji": "📱",
-      "experience": "junior"
-    },
-    {
-      "text": "Brand Experience Journey",
-      "meaning": "Making your logo bigger",
-      "emoji": "🎨",
-      "experience": "junior"
-    },
-    {
-      "text": "Viral Loop Engineering",
-      "meaning": "Trying to make something go viral (it won't)",
-      "emoji": "🦠",
-      "experience": "senior"
-    }
-  ],
-  "productivity": [
-    {
-      "text": "Deep Work Optimization",
-      "meaning": "Actually getting work done between meetings",
-      "emoji": "🎯",
-      "experience": "senior"
-    },
-    {
-      "text": "Async Communication Flow",
-      "meaning": "Sending emails instead of having meetings",
-      "emoji": "📨",
-      "experience": "junior"
-    },
-    {
-      "text": "Workflow Automation Pipeline",
-      "meaning": "Making robots do your boring tasks",
-      "emoji": "⚡",
-      "experience": "mid"
-    },
-    {
-      "text": "Remote-First Culture",
-      "meaning": "Working in pajamas",
-      "emoji": "🏠",
-      "experience": "junior"
-    }
-  ],
-  "innovation": [
-    {
-      "text": "Disruptive Paradigm Shift",
-      "meaning": "Doing something slightly different than before",
-      "emoji": "💫",
       "experience": "guru"
     },
     {
-      "text": "Innovation Ecosystem",
-      "meaning": "A fancy way to say 'trying new things'",
-      "emoji": "🌿",
-      "experience": "senior"
-    },
-    {
-      "text": "Design Thinking Framework",
-      "meaning": "Drawing lots of sticky notes on whiteboards",
-      "emoji": "🎨",
+      "text": "Attribution Modeling Matrix",
+      "meaning": "Guessing which marketing actually worked",
+      "emoji": "📏",
       "experience": "mid"
     },
     {
-      "text": "Future-Proof Architecture",
-      "meaning": "Something that'll be legacy code in 2 years",
-      "emoji": "🔮",
+      "text": "User Journey Analytics",
+      "meaning": "Stalking users through your product legally",
+      "emoji": "📑",
+      "experience": "junior"
+    }
+  ],
+  "channels": [
+    {
+      "text": "Omnichannel Synergy Stack",
+      "meaning": "Being everywhere all at once",
+      "emoji": "🌐",
       "experience": "guru"
+    },
+    {
+      "text": "Channel Mix Optimization",
+      "meaning": "Finding out where to spend marketing money",
+      "emoji": "💸",
+      "experience": "senior"
+    },
+    {
+      "text": "Platform Arbitrage Strategy",
+      "meaning": "Finding cheaper ways to reach people",
+      "emoji": "💰",
+      "experience": "mid"
+    },
+    {
+      "text": "Cross-Platform Engagement",
+      "meaning": "Chasing users across the internet",
+      "emoji": "📲",
+      "experience": "junior"
     }
   ]
 }
