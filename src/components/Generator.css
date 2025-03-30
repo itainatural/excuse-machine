@@ -29,6 +29,33 @@
   gap: 0.5rem;
 }
 
+.image-container {
+  margin-top: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container.visible {
+  opacity: 1;
+}
+
+.image-container img.generated-image {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .title-emoji {
   font-size: 2rem;
   margin-left: 0.5rem;

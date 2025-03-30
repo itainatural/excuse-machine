@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './Generator.css';
+import LoadingAnimation from './LoadingAnimation';
 
 const imageStyles = {
   cartoon: {
@@ -464,12 +465,11 @@ const ImageGenerator = () => {
       )}
 
       <div className={`image-container ${(isLoading || imageUrl) ? 'visible' : ''} ${isLoading ? 'loading' : ''}`}>
-        {imageUrl && !isLoading && (
-          <img src={imageUrl} alt="Generated content" />
-        )}
-        {isLoading && (
-          <div className="loading-text">{loadingMessage}</div>
-        )}
+        {isLoading ? (
+          <LoadingAnimation messages={loadingMessages} />
+        ) : imageUrl ? (
+          <img src={imageUrl} alt="Generated content" className="generated-image" />
+        ) : null}
       </div>
 
 
