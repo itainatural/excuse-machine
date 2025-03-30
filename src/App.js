@@ -92,7 +92,7 @@ function App() {
         >
           🍔
         </button>
-        <h1>AI Content Generator</h1>
+        <h1>Creative Hacks</h1>
       </nav>
       <div className="app-layout">
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
