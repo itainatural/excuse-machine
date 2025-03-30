@@ -50,8 +50,13 @@ const Generator = ({ title, data, categories }) => {
   };
   
   useEffect(() => {
-    if (!data) return;
+    if (!data) {
+      console.error('No data provided to Generator');
+      return;
+    }
+    console.log('Available categories:', Object.keys(data));
     const firstCategory = Object.keys(data)[0];
+    console.log('Setting initial category to:', firstCategory);
     setSelectedCategory(firstCategory);
   }, [data]);
 
@@ -71,13 +76,35 @@ const Generator = ({ title, data, categories }) => {
   }, []);
 
   const filterByExperience = useCallback((items, experience) => {
-    return experience === 'any' ? items : items.filter(item => item.experience === experience);
+    if (experience === 'any') return items;
+    console.log('Filtering by experience level:', experience);
+    console.log('Available experience levels:', [...new Set(items.map(item => item.experience))]);
+    return items.filter(item => {
+      const matches = item.experience === experience;
+      if (!matches) {
+        console.log('Item did not match:', item.text, 'has experience:', item.experience);
+      }
+      return matches;
+    });
   }, []);
 
   const generateItem = useCallback(() => {
-    if (!data || !selectedCategory || !data[selectedCategory]) return;
+    if (!data) {
+      console.error('No data available');
+      return;
+    }
+    if (!selectedCategory) {
+      console.error('No category selected');
+      return;
+    }
+    if (!data[selectedCategory]) {
+      console.error('Selected category not found in data:', selectedCategory);
+      return;
+    }
 
     const categoryItems = data[selectedCategory];
+    console.log('Category items for', selectedCategory, ':', categoryItems);
+    
     if (!Array.isArray(categoryItems)) {
       console.error('Invalid category items:', categoryItems);
       return;
@@ -94,7 +121,10 @@ const Generator = ({ title, data, categories }) => {
     }
     
     if (isBuzzwords) {
+      console.log('Before experience filtering:', filteredItems.length, 'items');
+      console.log('Selected experience:', selectedExperience);
       filteredItems = filterByExperience(filteredItems, selectedExperience);
+      console.log('After experience filtering:', filteredItems.length, 'items');
     }
     
     if (filteredItems.length === 0) {

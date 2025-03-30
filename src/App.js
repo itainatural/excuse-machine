@@ -36,13 +36,11 @@ function App() {
   };
 
   const buzzwordCategories = {
-    creative_testing: 'Creative Testing 🧪',
-    ad_formats: 'Ad Formats 📱',
-    growth_levers: 'Growth Levers 📈',
-    campaign_scaling: 'Campaign Scaling 🚀',
-    creative_angles: 'Creative Angles 🎯',
-    platform_hacks: 'Platform Hacks ⚡',
-    testing_frameworks: 'Testing Frameworks 🔬'
+    strategy: 'Strategy 🎯',
+    tech: 'Tech 🤖',
+    marketing: 'Marketing 📈',
+    productivity: 'Productivity ⚡',
+    innovation: 'Innovation 🚀'
   };
 
   const generators = [
