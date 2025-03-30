@@ -64,7 +64,9 @@ const SpeechButton = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          text,
+          text: type === 'buzzwords' && meaning
+            ? `${text}. ${meaning}`
+            : text,
           ...voiceSettings
         }),
         mode: 'cors',
