@@ -98,7 +98,13 @@ const Generator = ({ title, data, categories }) => {
     }
     
     if (filteredItems.length === 0) {
-      const noItemsMessages = [
+      const noItemsMessages = isBuzzwords ? [
+        { text: "Synergy overload! Even AI can't decode this combination! 🤯", emoji: "🔄", meaning: "When the buzzwords are too buzzwordy" },
+        { text: "404: Innovation paradigm not found in this matrix! 🚫", emoji: "🎯", meaning: "Sometimes less is more" },
+        { text: "Your filter settings have disrupted our agile workflow! 🔄", emoji: "🏃", meaning: "Time to pivot to a new strategy" },
+        { text: "Even ChatGPT can't optimize this use case! 🤖", emoji: "💫", meaning: "When AI meets corporate speak" },
+        { text: "Time to leverage a different strategic framework! 📊", emoji: "🎯", meaning: "Try adjusting your filters" }
+      ] : [
         { text: "Oops! Your budget filter is as empty as my wallet after payday! 🙈", emoji: "💸" },
         { text: "Even my AI brain can't find dates this cheap! Time to break the piggy bank? 🐷", emoji: "🏦" },
         { text: "Error 404: Romance not found in this price range! Maybe try selling a kidney? (Just kidding!) 😅", emoji: "💝" },

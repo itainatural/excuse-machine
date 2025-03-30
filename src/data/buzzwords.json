@@ -1,121 +1,112 @@
 {
-  "creative_testing": [
+  "strategy": [
     {
-      "text": "Hook Pattern Disruption",
-      "meaning": "Testing unconventional opening lines to grab attention",
-      "emoji": "🎣"
+      "text": "Agile Innovation Sprint",
+      "meaning": "Fast-paced development cycle that probably isn't actually agile",
+      "emoji": "🏃"
     },
     {
-      "text": "Pattern Interrupt Sequencing",
-      "meaning": "Making users stop scrolling with unexpected visuals",
-      "emoji": "👀"
+      "text": "Digital Transformation Journey",
+      "meaning": "Upgrading from Excel 2003 to Excel 2019",
+      "emoji": "🚀"
     },
     {
-      "text": "Thumb-Stopping Moment",
-      "meaning": "That split second when a user actually stops scrolling",
-      "emoji": "🛑"
+      "text": "Synergy Optimization",
+      "meaning": "Getting teams to actually talk to each other",
+      "emoji": "🤝"
+    },
+    {
+      "text": "Growth Mindset Culture",
+      "meaning": "Encouraging employees to learn from failures without actually failing",
+      "emoji": "🌱"
     }
   ],
-  "ad_formats": [
+  "tech": [
     {
-      "text": "Native Story Integration",
-      "meaning": "Ads that don't look like ads (but totally are)",
-      "emoji": "🎭"
-    },
-    {
-      "text": "Carousel Narrative Flow",
-      "meaning": "Making people swipe through multiple ad slides",
-      "emoji": "🎠"
-    },
-    {
-      "text": "Short-Form Video Loop",
-      "meaning": "Those addictive 15-second videos you can't stop watching",
-      "emoji": "🔄"
-    }
-  ],
-  "growth_levers": [
-    {
-      "text": "Creative Fatigue Index",
-      "meaning": "When your best ad stops performing because everyone's seen it",
-      "emoji": "😴"
-    },
-    {
-      "text": "Audience Expansion Loop",
-      "meaning": "Finding more people like your best customers",
-      "emoji": "🎯"
-    },
-    {
-      "text": "ROAS Recovery Pattern",
-      "meaning": "Getting your ads profitable again after iOS updates",
-      "emoji": "📱"
-    }
-  ],
-  "campaign_scaling": [
-    {
-      "text": "Budget Ramp Protocol",
-      "meaning": "Slowly increasing spend without killing performance",
-      "emoji": "📈"
-    },
-    {
-      "text": "Creative Refresh Cycle",
-      "meaning": "Making new ads before the old ones die",
-      "emoji": "♻️"
-    },
-    {
-      "text": "Winner Scaling Framework",
-      "meaning": "Throwing more money at what's working",
-      "emoji": "🏆"
-    }
-  ],
-  "creative_angles": [
-    {
-      "text": "Pain Point Amplification",
-      "meaning": "Reminding people why they need your solution",
-      "emoji": "🤕"
-    },
-    {
-      "text": "FOMO Trigger Sequence",
-      "meaning": "Making people worry about missing out",
-      "emoji": "😰"
-    },
-    {
-      "text": "Social Proof Stacking",
-      "meaning": "Showing off all your happy customers",
-      "emoji": "👥"
-    }
-  ],
-  "platform_hacks": [
-    {
-      "text": "Algorithm Pattern Match",
-      "meaning": "Making content that Facebook/TikTok loves",
+      "text": "AI-Powered Solutions",
+      "meaning": "If-else statements with better marketing",
       "emoji": "🤖"
     },
     {
-      "text": "Engagement Bait Loop",
-      "meaning": "Getting people to comment and share",
-      "emoji": "🎣"
+      "text": "Blockchain Integration",
+      "meaning": "Adding cryptocurrency to things that don't need it",
+      "emoji": "⛓️"
     },
     {
-      "text": "Platform Arbitrage",
-      "meaning": "Finding cheaper traffic on underused ad platforms",
-      "emoji": "💰"
+      "text": "Cloud-Native Architecture",
+      "meaning": "Running everything on someone else's computer",
+      "emoji": "☁️"
+    },
+    {
+      "text": "Edge Computing Matrix",
+      "meaning": "Putting mini servers closer to users",
+      "emoji": "📡"
     }
   ],
-  "testing_frameworks": [
+  "marketing": [
     {
-      "text": "Dynamic Creative Matrix",
-      "meaning": "Testing every possible combination of ad elements",
-      "emoji": "🎲"
+      "text": "Content Velocity Optimization",
+      "meaning": "Posting more stuff faster",
+      "emoji": "📈"
     },
     {
-      "text": "Hook Library System",
-      "meaning": "Collection of opening lines that actually work",
-      "emoji": "📚"
+      "text": "Multi-Channel Engagement",
+      "meaning": "Annoying people on every possible platform",
+      "emoji": "📱"
     },
     {
-      "text": "Rapid Testing Velocity",
-      "meaning": "Throwing spaghetti at the wall really fast",
-      "emoji": "🍝"
+      "text": "Brand Experience Journey",
+      "meaning": "Making your logo bigger",
+      "emoji": "🎨"
+    },
+    {
+      "text": "Viral Loop Engineering",
+      "meaning": "Trying to make something go viral (it won't)",
+      "emoji": "🦠"
+    }
+  ],
+  "productivity": [
+    {
+      "text": "Deep Work Optimization",
+      "meaning": "Actually getting work done between meetings",
+      "emoji": "🎯"
+    },
+    {
+      "text": "Async Communication Flow",
+      "meaning": "Sending emails instead of having meetings",
+      "emoji": "📨"
+    },
+    {
+      "text": "Workflow Automation Pipeline",
+      "meaning": "Making robots do your boring tasks",
+      "emoji": "⚡"
+    },
+    {
+      "text": "Remote-First Culture",
+      "meaning": "Working in pajamas",
+      "emoji": "🏠"
+    }
+  ],
+  "innovation": [
+    {
+      "text": "Disruptive Paradigm Shift",
+      "meaning": "Doing something slightly different than before",
+      "emoji": "💫"
+    },
+    {
+      "text": "Innovation Ecosystem",
+      "meaning": "A fancy way to say 'trying new things'",
+      "emoji": "🌿"
+    },
+    {
+      "text": "Design Thinking Framework",
+      "meaning": "Drawing lots of sticky notes on whiteboards",
+      "emoji": "🎨"
+    },
+    {
+      "text": "Future-Proof Architecture",
+      "meaning": "Something that'll be legacy code in 2 years",
+      "emoji": "🔮"
     }
   ]
 }
