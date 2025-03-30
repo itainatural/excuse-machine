@@ -12,7 +12,7 @@ import buzzwords from './data/buzzwords.json';
 
 
 function App() {
-  const [activeGenerator, setActiveGenerator] = useState('creative');
+  const [activeGenerator, setActiveGenerator] = useState('buzzwords');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   if (!excuses || !dateIdeas) {
@@ -45,11 +45,19 @@ function App() {
 
   const generators = [
     {
-      id: 'creative',
-      title: 'Creative Hacks',
+      id: 'buzzwords',
+      title: 'Buzzwords',
       emoji: '🚀',
       data: buzzwords,
       categories: buzzwordCategories,
+      component: Generator
+    },
+    {
+      id: 'excuses',
+      title: 'Excuses',
+      emoji: '🤔',
+      data: excuses,
+      categories: excuseCategories,
       component: Generator
     },
     {
@@ -84,7 +92,7 @@ function App() {
         >
           🍔
         </button>
-        <h1>Creative Hacks</h1>
+        <h1>AI Content Generator</h1>
       </nav>
       <div className="app-layout">
         <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
