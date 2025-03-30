@@ -3,110 +3,130 @@
     {
       "text": "Agile Innovation Sprint",
       "meaning": "Fast-paced development cycle that probably isn't actually agile",
-      "emoji": "🏃"
+      "emoji": "🏃",
+      "experience": "mid"
     },
     {
       "text": "Digital Transformation Journey",
       "meaning": "Upgrading from Excel 2003 to Excel 2019",
-      "emoji": "🚀"
+      "emoji": "🚀",
+      "experience": "senior"
     },
     {
       "text": "Synergy Optimization",
       "meaning": "Getting teams to actually talk to each other",
-      "emoji": "🤝"
+      "emoji": "🤝",
+      "experience": "guru"
     },
     {
       "text": "Growth Mindset Culture",
       "meaning": "Encouraging employees to learn from failures without actually failing",
-      "emoji": "🌱"
+      "emoji": "🌱",
+      "experience": "junior"
     }
   ],
   "tech": [
     {
       "text": "AI-Powered Solutions",
       "meaning": "If-else statements with better marketing",
-      "emoji": "🤖"
+      "emoji": "🤖",
+      "experience": "guru"
     },
     {
       "text": "Blockchain Integration",
       "meaning": "Adding cryptocurrency to things that don't need it",
-      "emoji": "⛓️"
+      "emoji": "⛓️",
+      "experience": "senior"
     },
     {
       "text": "Cloud-Native Architecture",
       "meaning": "Running everything on someone else's computer",
-      "emoji": "☁️"
+      "emoji": "☁️",
+      "experience": "mid"
     },
     {
       "text": "Edge Computing Matrix",
       "meaning": "Putting mini servers closer to users",
-      "emoji": "📡"
+      "emoji": "📡",
+      "experience": "senior"
     }
   ],
   "marketing": [
     {
       "text": "Content Velocity Optimization",
       "meaning": "Posting more stuff faster",
-      "emoji": "📈"
+      "emoji": "📈",
+      "experience": "mid"
     },
     {
       "text": "Multi-Channel Engagement",
       "meaning": "Annoying people on every possible platform",
-      "emoji": "📱"
+      "emoji": "📱",
+      "experience": "junior"
     },
     {
       "text": "Brand Experience Journey",
       "meaning": "Making your logo bigger",
-      "emoji": "🎨"
+      "emoji": "🎨",
+      "experience": "junior"
     },
     {
       "text": "Viral Loop Engineering",
       "meaning": "Trying to make something go viral (it won't)",
-      "emoji": "🦠"
+      "emoji": "🦠",
+      "experience": "senior"
     }
   ],
   "productivity": [
     {
       "text": "Deep Work Optimization",
       "meaning": "Actually getting work done between meetings",
-      "emoji": "🎯"
+      "emoji": "🎯",
+      "experience": "senior"
     },
     {
       "text": "Async Communication Flow",
       "meaning": "Sending emails instead of having meetings",
-      "emoji": "📨"
+      "emoji": "📨",
+      "experience": "junior"
     },
     {
       "text": "Workflow Automation Pipeline",
       "meaning": "Making robots do your boring tasks",
-      "emoji": "⚡"
+      "emoji": "⚡",
+      "experience": "mid"
     },
     {
       "text": "Remote-First Culture",
       "meaning": "Working in pajamas",
-      "emoji": "🏠"
+      "emoji": "🏠",
+      "experience": "junior"
     }
   ],
   "innovation": [
     {
       "text": "Disruptive Paradigm Shift",
       "meaning": "Doing something slightly different than before",
-      "emoji": "💫"
+      "emoji": "💫",
+      "experience": "guru"
     },
     {
       "text": "Innovation Ecosystem",
       "meaning": "A fancy way to say 'trying new things'",
-      "emoji": "🌿"
+      "emoji": "🌿",
+      "experience": "senior"
     },
     {
       "text": "Design Thinking Framework",
       "meaning": "Drawing lots of sticky notes on whiteboards",
-      "emoji": "🎨"
+      "emoji": "🎨",
+      "experience": "mid"
     },
     {
       "text": "Future-Proof Architecture",
       "meaning": "Something that'll be legacy code in 2 years",
-      "emoji": "🔮"
+      "emoji": "🔮",
+      "experience": "guru"
     }
   ]
 }
