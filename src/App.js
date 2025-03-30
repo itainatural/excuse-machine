@@ -12,7 +12,7 @@ import buzzwords from './data/buzzwords.json';
 
 
 function App() {
-  const [activeGenerator, setActiveGenerator] = useState('buzzwords');
+  const [activeGenerator, setActiveGenerator] = useState('creative');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   if (!excuses || !dateIdeas) {
@@ -45,7 +45,7 @@ function App() {
 
   const generators = [
     {
-      id: 'buzzwords',
+      id: 'creative',
       title: 'Creative Hacks',
       emoji: '🚀',
       data: buzzwords,
@@ -58,14 +58,6 @@ function App() {
       emoji: '💝',
       data: dateIdeas,
       categories: dateCategories,
-      component: Generator
-    },
-    {
-      id: 'buzzwords',
-      title: 'Buzzwords',
-      emoji: '🚀',
-      data: buzzwords,
-      categories: buzzwordCategories,
       component: Generator
     },
     {
