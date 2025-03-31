@@ -254,7 +254,7 @@ try {
         )}
       </div>
 
-      <button onClick={generateItem} className="generate-button black">
+      <button onClick={generateItem} className="generate-button">
         Generate {title} <SparkleIcon />
       </button>
 
