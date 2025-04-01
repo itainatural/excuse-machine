@@ -3,6 +3,14 @@
   margin: 0 auto;
   padding: 1.5rem;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .generator {
+    padding: 1rem;
+  }
 }
 
 
@@ -68,6 +76,13 @@
   gap: 1rem;
   width: 100%;
   max-width: 600px;
+}
+
+@media (max-width: 480px) {
+  .filters-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 }
 
 .image-generator .filters-container {
@@ -160,12 +175,25 @@ select:focus {
   box-sizing: border-box;
 }
 
+@media (max-width: 480px) {
+  .result-container {
+    padding: 1.25rem;
+    margin: 1rem 0 0;
+  }
+}
+
 .result-text {
   font-size: 24px;
   color: #333;
   margin: 0;
   font-weight: 500;
   line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .result-text {
+    font-size: 20px;
+  }
 }
 
 .emoji-container {
@@ -186,6 +214,17 @@ select:focus {
   gap: 0.5rem;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
 }
 
 .generate-button {
