@@ -308,38 +308,25 @@ app.post('/api/generate-image', async (req, res) => {
                         complexity >= 0.5 ? ", moderate detail" :
                         ", simple and clean";
     
-    // Use GPT-4o for image generation with vision capabilities
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content: "You are an expert at creating high-quality images. Generate a detailed image based on the user's prompt. Return ONLY a JSON object with a single field 'image_url' containing the URL of the generated image. Do not include any explanations or other text."
-        },
-        {
-          role: "user",
-          content: `Generate a high-quality image of: ${prompt}${detailPrompt}. Make it cinematic and visually stunning.`
-        }
-      ],
-      max_tokens: 500
+    // Set quality based on complexity
+    const quality = complexity >= 0.8 ? "high" : 
+                   complexity >= 0.5 ? "medium" : "low";
+    
+    // Use the dedicated Images API with gpt-image-1 model
+    const response = await openai.images.generate({
+      model: "gpt-image-1",
+      prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
+      n: 1,
+      size: "1024x1024",
+      quality: quality,
+      response_format: "url"
     });
 
-    // Parse the JSON response
-    let responseContent;
-    try {
-      responseContent = JSON.parse(response.choices[0].message.content);
-    } catch (parseError) {
-      console.error('Error parsing JSON response:', parseError);
-      console.log('Raw response:', response.choices[0].message.content);
-      throw new Error('Invalid response format from image generation');
-    }
-
-    // Extract the image URL
-    const imageUrl = responseContent.image_url;
+    // Extract the image URL from the response
+    const imageUrl = response.data[0].url;
     
     if (!imageUrl) {
-      console.error('No image URL in response:', responseContent);
+      console.error('No image URL in response:', response);
       throw new Error('No image URL found in the response');
     }
 
