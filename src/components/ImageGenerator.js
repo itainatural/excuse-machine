@@ -53,7 +53,16 @@ const ImageGenerator = () => {
   const [microphoneInitialized, setMicrophoneInitialized] = useState(false);
   const [selectedMood, setSelectedMood] = useState('standard');
   const [weirdness, setWeirdness] = useState(30);
-  const [selectedFormats, setSelectedFormats] = useState(['1024x1024']);
+  const [selectedFormats, setSelectedFormats] = useState(() => {
+    // Try to get saved formats from localStorage
+    const savedFormats = localStorage.getItem('selectedImageFormats');
+    return savedFormats ? JSON.parse(savedFormats) : ['1024x1024'];
+  });
+  
+  // Save selected formats to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('selectedImageFormats', JSON.stringify(selectedFormats));
+  }, [selectedFormats]);
   
   const imageFormats = {
     '1024x1024': { label: 'Square (1024x1024)', value: '1024x1024' },
@@ -91,6 +100,7 @@ const ImageGenerator = () => {
   }, [weirdness]);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingFormats, setLoadingFormats] = useState({});
   const [isRecording, setIsRecording] = useState(false);
   const [recognition, setRecognition] = useState(null);
   const [hasPermission, setHasPermission] = useState(null); // null = unknown, true = granted, false = denied
@@ -123,6 +133,13 @@ const ImageGenerator = () => {
 
     try {
       setIsLoading(true);
+      
+      // Initialize loading state for each format
+      const initialLoadingState = {};
+      selectedFormats.forEach(format => {
+        initialLoadingState[format] = true;
+      });
+      setLoadingFormats(initialLoadingState);
 
       if (!prompt.trim()) {
         throw new Error('Please enter a prompt');
@@ -138,45 +155,65 @@ const ImageGenerator = () => {
       // Generate images for each selected format
       const generatedImages = [];
       
-      for (const format of selectedFormats) {
-        console.log(`Generating image in format: ${format}`);
-        
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            prompt: fullPrompt,
-            complexity: complexity,
-            format: format
-          }),
-          mode: 'cors',
-          credentials: 'omit'
-        });
+      // Create an array of promises for parallel processing
+      const imagePromises = selectedFormats.map(async (format) => {
+        try {
+          console.log(`Generating image in format: ${format}`);
+          
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              prompt: fullPrompt,
+              complexity: complexity,
+              format: format
+            }),
+            mode: 'cors',
+            credentials: 'omit'
+          });
 
-        const data = await response.json();
-        console.log(`Image generation response for format ${format}:`, data);
-        
-        if (!response.ok) {
-          console.error('Response not OK:', response.status, response.statusText);
-          throw new Error(data.error || `Failed to generate image in format ${format}`);
+          const data = await response.json();
+          console.log(`Image generation response for format ${format}:`, data);
+          
+          if (!response.ok) {
+            console.error('Response not OK:', response.status, response.statusText);
+            throw new Error(data.error || `Failed to generate image in format ${format}`);
+          }
+
+          if (!data.url) {
+            console.error('No URL in response data:', data);
+            throw new Error(`No image URL in response for format ${format}`);
+          }
+
+          // Add the generated image to our array
+          const newImage = {
+            url: data.url,
+            format: format,
+            label: imageFormats[format].label
+          };
+          
+          // Update images array with the new image
+          setImages(prevImages => [...prevImages, newImage]);
+          
+          return newImage;
+        } catch (error) {
+          console.error(`Error generating image for format ${format}:`, error);
+          throw error;
+        } finally {
+          // Mark this format as done loading
+          setLoadingFormats(prev => ({
+            ...prev,
+            [format]: false
+          }));
         }
-
-        if (!data.url) {
-          console.error('No URL in response data:', data);
-          throw new Error(`No image URL in response for format ${format}`);
-        }
-
-        generatedImages.push({
-          url: data.url,
-          format: format,
-          label: imageFormats[format].label
-        });
-      }
+      });
       
-      console.log('Setting generated images:', generatedImages);
-      setImages(generatedImages);
+      // Wait for all image generation to complete
+      await Promise.all(imagePromises);
+      console.log('All images generated successfully');
+
       
     } catch (error) {
       console.error('Image generation error:', {
@@ -519,15 +556,53 @@ const ImageGenerator = () => {
         </div>
       )}
 
-      <div className={`image-container ${(isLoading || images.length > 0) ? 'visible' : ''} ${isLoading ? 'loading' : ''}`}>
-        {isLoading ? (
+      <div className={`image-container ${(isLoading || images.length > 0) ? 'visible' : ''} ${isLoading && images.length === 0 ? 'loading' : ''}`}>
+        {isLoading && images.length === 0 ? (
           <LoadingAnimation messages={loadingMessages} />
-        ) : images.length > 0 ? (
+        ) : null}
+        
+        {selectedFormats.length > 0 && (
+          <div className="format-status">
+            {selectedFormats.map(format => (
+              <div key={format} className="format-status-item">
+                <span className="format-name">{imageFormats[format].label}</span>
+                {loadingFormats[format] ? (
+                  <span className="format-loading">Loading...</span>
+                ) : images.find(img => img.format === format) ? (
+                  <span className="format-complete">✓ Complete</span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {images.length > 0 ? (
           <div className="generated-images-grid">
             {images.map((image, index) => (
               <div key={index} className="generated-image-wrapper">
                 <div className="image-format-label">{image.label}</div>
                 <img src={image.url} alt={`Generated ${image.format}`} className="generated-image" />
+                <div className="image-actions">
+                  <a 
+                    href={image.url} 
+                    download={`generated-image-${image.format}.png`}
+                    className="download-button"
+                    onClick={(e) => {
+                      // For data URLs, we need to handle download differently
+                      if (image.url.startsWith('data:')) {
+                        e.preventDefault();
+                        const link = document.createElement('a');
+                        link.href = image.url;
+                        link.download = `generated-image-${image.format}.png`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      }
+                    }}
+                  >
+                    Download
+                  </a>
+                </div>
               </div>
             ))}
           </div>
