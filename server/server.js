@@ -302,26 +302,38 @@ app.post('/api/generate-image', async (req, res) => {
       return res.status(400).json({ error: 'Prompt is required' });
     }
 
-    // Adjust prompt based on complexity
-    const qualityLevel = complexity >= 0.8 ? "hd" : "standard";
-    const styleLevel = complexity >= 0.7 ? "vivid" : "natural";
-    
-    // Add detail level to prompt based on complexity
+    // Adjust detail level based on complexity
     const detailPrompt = complexity >= 0.9 ? ", extremely detailed, intricate details" :
                         complexity >= 0.7 ? ", detailed" :
                         complexity >= 0.5 ? ", moderate detail" :
                         ", simple and clean";
     
-    const response = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `${prompt}${detailPrompt}`,
-      n: 1,
-      size: "1024x1024",
-      quality: qualityLevel,
-      style: styleLevel
+    // Use GPT-4o with Sora for image generation
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert at creating high-quality images with Sora. Generate a detailed image based on the user's prompt."
+        },
+        {
+          role: "user",
+          content: [
+            { type: "text", text: `Create an image of: ${prompt}${detailPrompt}` }
+          ]
+        }
+      ],
+      max_tokens: 300
     });
 
-    res.json({ url: response.data[0].url });
+    // Extract the image URL from the response
+    const imageUrl = response.choices[0].message.content.match(/https:\/\/[^\s)"]+/)?.[0];
+    
+    if (!imageUrl) {
+      throw new Error('No image URL found in the response');
+    }
+
+    res.json({ url: imageUrl });
   } catch (error) {
     console.error('Error generating image:', error.message);
     const statusCode = error.status || 500;

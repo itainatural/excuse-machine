@@ -89,16 +89,16 @@ const ImageGenerator = () => {
   const [hasPermission, setHasPermission] = useState(null); // null = unknown, true = granted, false = denied
 
   const loadingMessages = useMemo(() => [
-    "Teaching AI to hold a brush... 🎨",
+    "Sora is creating your masterpiece... 🎬",
+    "GPT-4o is visualizing your idea... 🧠",
     "Mixing digital paint... 🖌️",
     "Consulting with Bob Ross... 🌲",
     "Adding happy little accidents... ⭐",
-    "Downloading creativity.exe... 🔫",
-    "Arguing with the art critic AI... 🤖",
+    "Generating cinematic quality... 🎭",
     "Finding the right shade of awesome... 🌈",
     "Making sure it's Instagram-worthy... 📸",
     "Sprinkling some magic pixels... ✨",
-    "Converting coffee to art... ☕"
+    "Converting imagination to reality... 🚀"
   ], []);
 
   const [loadingMessage, setLoadingMessage] = useState(loadingMessages[0]);
@@ -124,14 +124,18 @@ const ImageGenerator = () => {
                         weirdness > 40 ? 'quirky and unusual' : 
                         'mostly normal with slight quirkiness';
       
-      const fullPrompt = `Create an image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging and fun!`;
+      // Enhanced prompt for GPT-4o with Sora
+      const fullPrompt = `Create a high-quality, photorealistic image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging, cinematic, and visually stunning!`;
 
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: fullPrompt }),
+        body: JSON.stringify({ 
+          prompt: fullPrompt,
+          complexity: complexity
+        }),
         mode: 'cors',
         credentials: 'omit'
       });
@@ -397,7 +401,7 @@ const ImageGenerator = () => {
 
   return (
     <div className="image-generator">
-      <h1>Visions 🎨</h1>
+      <h1>Sora Visions 🎬</h1>
       <div className="controls">
         <div className="filters-container">
           <div className="filter-group">
