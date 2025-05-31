@@ -312,31 +312,43 @@ app.post('/api/generate-image', async (req, res) => {
     const quality = complexity >= 0.8 ? "high" : 
                    complexity >= 0.5 ? "medium" : "low";
     
-    // Use the OpenAI Images API with gpt-image-1 model
-    const response = await openai.images.generate({
-      model: "gpt-image-1",
-      prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
-      n: 1,
-      size: "1024x1024",
-      quality: quality
+    // Use GPT-4o for image generation with vision capabilities
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert at creating high-quality images. Generate a detailed image based on the user's prompt. Return ONLY a JSON object with a single field 'image_url' containing the URL of the generated image. Do not include any explanations or other text."
+        },
+        {
+          role: "user",
+          content: `Generate a high-quality image of: ${prompt}${detailPrompt}. Make it cinematic and visually stunning.`
+        }
+      ],
+      max_tokens: 500
     });
 
-    console.log('Image generation response:', JSON.stringify(response));
+    console.log('Chat completion response received');
+    console.log('Response content:', response.choices[0].message.content);
     
-    // Extract the image URL or base64 data from the response
-    let imageUrl;
-    
-    if (response.data && response.data.length > 0) {
-      if (response.data[0].url) {
-        imageUrl = response.data[0].url;
-      } else if (response.data[0].b64_json) {
-        // If we get base64 data, we need to convert it to a data URL
-        imageUrl = `data:image/png;base64,${response.data[0].b64_json}`;
-      }
+    // Parse the JSON response
+    let responseContent;
+    try {
+      responseContent = JSON.parse(response.choices[0].message.content);
+      console.log('Parsed JSON response:', responseContent);
+    } catch (parseError) {
+      console.error('Error parsing JSON response:', parseError);
+      console.log('Raw response:', response.choices[0].message.content);
+      throw new Error('Invalid response format from image generation');
     }
+
+    // Extract the image URL
+    const imageUrl = responseContent.image_url;
+    console.log('Extracted image URL:', imageUrl);
     
     if (!imageUrl) {
-      console.error('No image URL in response:', response);
+      console.error('No image URL in response:', responseContent);
       throw new Error('No image URL found in the response');
     }
 
