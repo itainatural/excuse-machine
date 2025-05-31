@@ -317,7 +317,7 @@ app.post('/api/generate-image', async (req, res) => {
     
     // Use the OpenAI Images API with gpt-image-1 model
     // Validate format
-    const validFormats = ['1024x1024', '1080x1350', '1080x1920'];
+    const validFormats = ['1024x1024', '1024x1536', '1536x1024', 'auto'];
     if (!validFormats.includes(format)) {
       return res.status(400).json({ error: `Invalid format: ${format}. Must be one of: ${validFormats.join(', ')}` });
     }

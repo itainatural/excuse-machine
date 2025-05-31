@@ -66,8 +66,8 @@ const ImageGenerator = () => {
   
   const imageFormats = {
     '1024x1024': { label: 'Square (1024x1024)', value: '1024x1024' },
-    '1080x1350': { label: 'Portrait (1080x1350)', value: '1080x1350' },
-    '1080x1920': { label: 'Tall (1080x1920)', value: '1080x1920' }
+    '1024x1536': { label: 'Portrait (1024x1536)', value: '1024x1536' },
+    '1536x1024': { label: 'Landscape (1536x1024)', value: '1536x1024' }
   };
 
   // Initialize microphone permissions
