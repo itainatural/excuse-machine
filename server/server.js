@@ -297,7 +297,7 @@ app.post('/api/generate-speech', async (req, res) => {
 // Generate image endpoint
 app.post('/api/generate-image', async (req, res) => {
   try {
-    const { prompt, complexity = 0.6 } = req.body;
+    const { prompt, complexity = 0.5, format = '1024x1024' } = req.body;
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required' });
     }
@@ -316,11 +316,17 @@ app.post('/api/generate-image', async (req, res) => {
     console.log(`Prompt: ${prompt}${detailPrompt}`);
     
     // Use the OpenAI Images API with gpt-image-1 model
+    // Validate format
+    const validFormats = ['1024x1024', '1080x1350', '1080x1920'];
+    if (!validFormats.includes(format)) {
+      return res.status(400).json({ error: `Invalid format: ${format}. Must be one of: ${validFormats.join(', ')}` });
+    }
+    
     console.log('Calling OpenAI Images API with parameters:', {
       model: "gpt-image-1",
       prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
       n: 1,
-      size: "1024x1024",
+      size: format,
       quality: quality
     });
     
@@ -328,7 +334,7 @@ app.post('/api/generate-image', async (req, res) => {
       model: "gpt-image-1",
       prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
       n: 1,
-      size: "1024x1024",
+      size: format,
       quality: quality
     });
 

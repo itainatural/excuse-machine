@@ -53,6 +53,13 @@ const ImageGenerator = () => {
   const [microphoneInitialized, setMicrophoneInitialized] = useState(false);
   const [selectedMood, setSelectedMood] = useState('standard');
   const [weirdness, setWeirdness] = useState(30);
+  const [selectedFormats, setSelectedFormats] = useState(['1024x1024']);
+  
+  const imageFormats = {
+    '1024x1024': { label: 'Square (1024x1024)', value: '1024x1024' },
+    '1080x1350': { label: 'Portrait (1080x1350)', value: '1080x1350' },
+    '1080x1920': { label: 'Tall (1080x1920)', value: '1080x1920' }
+  };
 
   // Initialize microphone permissions
   useEffect(() => {
@@ -82,7 +89,7 @@ const ImageGenerator = () => {
       slider.style.setProperty('--slider-value', `${weirdness}%`);
     }
   }, [weirdness]);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [recognition, setRecognition] = useState(null);
@@ -108,6 +115,7 @@ const ImageGenerator = () => {
   const handleImageGeneration = useCallback(async () => {
     if (!prompt || isLoading) return;
     setError(null);
+    setImages([]);
     
     const complexity = imageMoods[selectedMood].complexity;
 
@@ -124,37 +132,51 @@ const ImageGenerator = () => {
                         weirdness > 40 ? 'quirky and unusual' : 
                         'mostly normal with slight quirkiness';
       
-      // Enhanced prompt for GPT-4o with Sora
+      // Enhanced prompt for GPT Image
       const fullPrompt = `Create a high-quality, photorealistic image: ${prompt}. Mood: ${imageMoods[selectedMood].prompt}. Style: ${imageStyles[selectedStyle].prompt}. ${weirdLevel}. Make it engaging, cinematic, and visually stunning!`;
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          prompt: fullPrompt,
-          complexity: complexity
-        }),
-        mode: 'cors',
-        credentials: 'omit'
-      });
-
-      const data = await response.json();
-      console.log('Image generation response data:', data);
+      // Generate images for each selected format
+      const generatedImages = [];
       
-      if (!response.ok) {
-        console.error('Response not OK:', response.status, response.statusText);
-        throw new Error(data.error || 'Failed to generate image');
-      }
+      for (const format of selectedFormats) {
+        console.log(`Generating image in format: ${format}`);
+        
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/generate-image`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            prompt: fullPrompt,
+            complexity: complexity,
+            format: format
+          }),
+          mode: 'cors',
+          credentials: 'omit'
+        });
 
-      if (!data.url) {
-        console.error('No URL in response data:', data);
-        throw new Error('No image URL in response');
-      }
+        const data = await response.json();
+        console.log(`Image generation response for format ${format}:`, data);
+        
+        if (!response.ok) {
+          console.error('Response not OK:', response.status, response.statusText);
+          throw new Error(data.error || `Failed to generate image in format ${format}`);
+        }
 
-      console.log('Setting image URL:', data.url);
-      setImageUrl(data.url);
+        if (!data.url) {
+          console.error('No URL in response data:', data);
+          throw new Error(`No image URL in response for format ${format}`);
+        }
+
+        generatedImages.push({
+          url: data.url,
+          format: format,
+          label: imageFormats[format].label
+        });
+      }
+      
+      console.log('Setting generated images:', generatedImages);
+      setImages(generatedImages);
       
     } catch (error) {
       console.error('Image generation error:', {
@@ -441,6 +463,31 @@ const ImageGenerator = () => {
             className="slider"
           />
         </div>
+        
+        <div className="format-selector">
+          <div className="format-header">Image Formats</div>
+          <div className="format-options">
+            {Object.entries(imageFormats).map(([key, format]) => (
+              <label key={key} className="format-option">
+                <input
+                  type="checkbox"
+                  checked={selectedFormats.includes(key)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setSelectedFormats([...selectedFormats, key]);
+                    } else {
+                      // Don't allow unchecking the last format
+                      if (selectedFormats.length > 1) {
+                        setSelectedFormats(selectedFormats.filter(f => f !== key));
+                      }
+                    }
+                  }}
+                />
+                {format.label}
+              </label>
+            ))}
+          </div>
+        </div>
 
 
         <div className="prompt-container">
@@ -472,11 +519,18 @@ const ImageGenerator = () => {
         </div>
       )}
 
-      <div className={`image-container ${(isLoading || imageUrl) ? 'visible' : ''} ${isLoading ? 'loading' : ''}`}>
+      <div className={`image-container ${(isLoading || images.length > 0) ? 'visible' : ''} ${isLoading ? 'loading' : ''}`}>
         {isLoading ? (
           <LoadingAnimation messages={loadingMessages} />
-        ) : imageUrl ? (
-          <img src={imageUrl} alt="Generated content" className="generated-image" />
+        ) : images.length > 0 ? (
+          <div className="generated-images-grid">
+            {images.map((image, index) => (
+              <div key={index} className="generated-image-wrapper">
+                <div className="image-format-label">{image.label}</div>
+                <img src={image.url} alt={`Generated ${image.format}`} className="generated-image" />
+              </div>
+            ))}
+          </div>
         ) : null}
       </div>
 
