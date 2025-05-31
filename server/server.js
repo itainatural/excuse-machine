@@ -318,8 +318,7 @@ app.post('/api/generate-image', async (req, res) => {
       prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
       n: 1,
       size: "1024x1024",
-      quality: quality,
-      response_format: "url"
+      quality: quality
     });
 
     // Extract the image URL from the response
