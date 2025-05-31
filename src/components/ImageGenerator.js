@@ -141,15 +141,19 @@ const ImageGenerator = () => {
       });
 
       const data = await response.json();
+      console.log('Image generation response data:', data);
       
       if (!response.ok) {
+        console.error('Response not OK:', response.status, response.statusText);
         throw new Error(data.error || 'Failed to generate image');
       }
 
       if (!data.url) {
+        console.error('No URL in response data:', data);
         throw new Error('No image URL in response');
       }
 
+      console.log('Setting image URL:', data.url);
       setImageUrl(data.url);
       
     } catch (error) {

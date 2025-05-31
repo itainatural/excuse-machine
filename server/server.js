@@ -316,6 +316,14 @@ app.post('/api/generate-image', async (req, res) => {
     console.log(`Prompt: ${prompt}${detailPrompt}`);
     
     // Use the OpenAI Images API with gpt-image-1 model
+    console.log('Calling OpenAI Images API with parameters:', {
+      model: "gpt-image-1",
+      prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
+      n: 1,
+      size: "1024x1024",
+      quality: quality
+    });
+    
     const response = await openai.images.generate({
       model: "gpt-image-1",
       prompt: `${prompt}${detailPrompt}. Make it cinematic and visually stunning.`,
@@ -326,29 +334,38 @@ app.post('/api/generate-image', async (req, res) => {
 
     console.log('Image generation response received');
     console.log('Response structure:', JSON.stringify(Object.keys(response)));
-    console.log('Response data structure:', response.data ? JSON.stringify(Object.keys(response.data[0])) : 'No data');
     
     // Extract the image URL or base64 data from the response
     let imageUrl;
     
     if (response.data && response.data.length > 0) {
+      console.log('Response data keys:', JSON.stringify(Object.keys(response.data[0])));
+      
       if (response.data[0].url) {
         imageUrl = response.data[0].url;
-        console.log('Found URL in response');
+        console.log('Found URL in response:', imageUrl);
       } else if (response.data[0].b64_json) {
         // If we get base64 data, we need to convert it to a data URL
-        imageUrl = `data:image/png;base64,${response.data[0].b64_json}`;
-        console.log('Found base64 data in response, converted to data URL');
+        const b64Data = response.data[0].b64_json;
+        console.log('Found base64 data in response, length:', b64Data.length);
+        
+        // Create data URL
+        imageUrl = `data:image/png;base64,${b64Data}`;
+        console.log('Created data URL, length:', imageUrl.length);
+        console.log('Data URL sample (first 50 chars):', imageUrl.substring(0, 50) + '...');
       }
+    } else {
+      console.error('No data array or empty data array in response');
     }
     
     console.log('Image URL found:', !!imageUrl);
     
     if (!imageUrl) {
-      console.error('No image URL in response:', response);
+      console.error('No image URL in response:', JSON.stringify(response));
       throw new Error('No image URL found in the response');
     }
-
+    
+    // Return the image URL to the frontend
     res.json({ url: imageUrl });
   } catch (error) {
     console.error('Error generating image:', error.message);
