@@ -89,15 +89,15 @@ const ImageGenerator = () => {
   const [hasPermission, setHasPermission] = useState(null); // null = unknown, true = granted, false = denied
 
   const loadingMessages = useMemo(() => [
-    "Sora is creating your masterpiece... 🎬",
-    "GPT-4o is visualizing your idea... 🧠",
-    "Mixing digital paint... 🖌️",
-    "Consulting with Bob Ross... 🌲",
-    "Adding happy little accidents... ⭐",
-    "Generating cinematic quality... 🎭",
-    "Finding the right shade of awesome... 🌈",
-    "Making sure it's Instagram-worthy... 📸",
-    "Sprinkling some magic pixels... ✨",
+    "GPT-4o is creating your masterpiece... 🎬",
+    "Sora is visualizing your idea... 🧠",
+    "Generating advanced AI visuals... 🖌️",
+    "Crafting your vision with precision... 🌲",
+    "Adding cinematic details... ⭐",
+    "Applying photorealistic rendering... 🎭",
+    "Finding the perfect visual style... 🌈",
+    "Making sure it's stunning... 📸",
+    "Sprinkling some AI magic... ✨",
     "Converting imagination to reality... 🚀"
   ], []);
 
@@ -401,7 +401,7 @@ const ImageGenerator = () => {
 
   return (
     <div className="image-generator">
-      <h1>Sora Visions 🎬</h1>
+      <h1>GPT-4o Visions 🎬</h1>
       <div className="controls">
         <div className="filters-container">
           <div className="filter-group">

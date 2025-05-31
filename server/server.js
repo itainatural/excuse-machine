@@ -308,28 +308,38 @@ app.post('/api/generate-image', async (req, res) => {
                         complexity >= 0.5 ? ", moderate detail" :
                         ", simple and clean";
     
-    // Use GPT-4o with Sora for image generation
+    // Use GPT-4o for image generation with vision capabilities
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
+      response_format: { type: "json_object" },
       messages: [
         {
           role: "system",
-          content: "You are an expert at creating high-quality images with Sora. Generate a detailed image based on the user's prompt."
+          content: "You are an expert at creating high-quality images. Generate a detailed image based on the user's prompt. Return ONLY a JSON object with a single field 'image_url' containing the URL of the generated image. Do not include any explanations or other text."
         },
         {
           role: "user",
-          content: [
-            { type: "text", text: `Create an image of: ${prompt}${detailPrompt}` }
-          ]
+          content: `Generate a high-quality image of: ${prompt}${detailPrompt}. Make it cinematic and visually stunning.`
         }
       ],
-      max_tokens: 300
+      max_tokens: 500
     });
 
-    // Extract the image URL from the response
-    const imageUrl = response.choices[0].message.content.match(/https:\/\/[^\s)"]+/)?.[0];
+    // Parse the JSON response
+    let responseContent;
+    try {
+      responseContent = JSON.parse(response.choices[0].message.content);
+    } catch (parseError) {
+      console.error('Error parsing JSON response:', parseError);
+      console.log('Raw response:', response.choices[0].message.content);
+      throw new Error('Invalid response format from image generation');
+    }
+
+    // Extract the image URL
+    const imageUrl = responseContent.image_url;
     
     if (!imageUrl) {
+      console.error('No image URL in response:', responseContent);
       throw new Error('No image URL found in the response');
     }
 
